@@ -29,17 +29,18 @@ export default MySearchBar = ({ navigation }) => {
 
     //console.log(testArr)
     //console.log(testStation)
-    console.log(stationsArray[0])
+    //console.log(stationsArray[0])
 
   })
 
-  const clickHandler = (id) => {
+  const clickHandler = (stationObject) => {
     //nav to edit in stacknav 
     //setDep(id)
     //console.log(id)
     //console.log(data.results[0])
-    //setTestStation(data.results[0])
-    //setDep(testStation)
+    setTestStation(stationObject.stationObject)
+    setDep(testStation)
+    console.log(testArr.departures[0].line)
 
     //navigation.navigate("LineDetails", { itemID: id })
 
