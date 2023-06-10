@@ -3,13 +3,51 @@ import {ActivityIndicator, Text, View, Button } from 'react-native';
 import { SearchBar } from '@rneui/themed';
 import { getInit } from '../api/init'
 import { getCheckName } from '../api/checkName';
+import { getDepartureList } from '../api/departureList';
+import Station from '../models/Station';
 
-export default function MySearchBar() {
+
+
+
+import StationList from '../components/StationList';
+
+
+export default MySearchBar = ({ navigation }) => {
 
   const [isReady, setReady] = useState(false);
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [stations, setStations] = useState([]);
+  const [stationsArray, setStationsArray] = useState([]);
+
+  const [testArr, setTestArr] = useState([]);
+  const [testStation, setTestStation] = useState([]);
+
+
+
+  useEffect(() => {
+
+    //console.log(testArr)
+    //console.log(testStation)
+    console.log(stationsArray[0])
+
+  })
+
+  const clickHandler = (id) => {
+    //nav to edit in stacknav 
+    //setDep(id)
+    //console.log(id)
+    //console.log(data.results[0])
+    //setTestStation(data.results[0])
+    //setDep(testStation)
+
+    //navigation.navigate("LineDetails", { itemID: id })
+
+  };
+
+  const setDep = async (id) => {
+    setTestArr(await getDepartureList(id))
+  }
 
   const updateSearch = async (search) => {
     setSearch(search);
@@ -19,7 +57,7 @@ export default function MySearchBar() {
 
 
     if (data.results) {
-      
+
       setStations(data.results);
       setReady(true);
 
@@ -27,6 +65,9 @@ export default function MySearchBar() {
     } else {
       setReady(false)
     }
+
+    setStationsArray(stations.map((item, index) => new Station(item)))
+
   };
 
   return (
@@ -39,9 +80,8 @@ export default function MySearchBar() {
 
       {isReady ? (
 
-        stations.map((item, index) => (
-          <Text key={index}>{item.combinedName}</Text>
-        ))
+        <StationList stationsData={stationsArray} clickHandler={clickHandler}/>
+
 
     ) : (
       null

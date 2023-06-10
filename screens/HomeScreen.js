@@ -9,7 +9,7 @@ export default HomeScreen = ({ navigation }) => {
   return (
     //WTF?!
     <Fragment>
-        <MySearchBar/>
+        <MySearchBar navigation={navigation}/>
         <HomeTopTabNavigator/>
     </Fragment>
   )
