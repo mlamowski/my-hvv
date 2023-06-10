@@ -4,25 +4,18 @@ import StationListItem from './StationListItem';
 
 export default StationList = ({ stationsData, clickHandler }) => {
 
-  const renderItem = ({ item }) => (
-    <StationListItem
-      title={item.station}
-      id={item.id}
-      clickHandler={clickHandler}
-    />
-  );
+    const renderItem = ({ item }) => (
+        <StationListItem
+        myStation={item}
+        clickHandler={clickHandler}
+        />
+    );
 
-  const handleItemClick = (itemId) => {
-    // Handle the item click event
-    console.log('Item clicked:', itemId);
-
-  };
-
-  return (
-    <FlatList
-      data={stationsData}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-    />
-  );
+    return (
+        <FlatList
+        data={stationsData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        />
+    );
 };

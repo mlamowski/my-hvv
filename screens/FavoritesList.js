@@ -10,10 +10,10 @@ export default FavoritesList = ({ navigation }) => {
   console.log("on fav list screen load");
 
   //clickHandler für wenn auf eine Station in der Favlist geglickt wird
-  const clickHandler = (id) => {
+  const clickHandler = (stationObject) => {
     //nav to edit in stacknav 
-    navigation.navigate("FavEdit", { itemID: id });
-    console.log('Item clicked:', id);
+    navigation.navigate("FavEdit", { itemID: stationObject.id });
+    console.log('Item clicked:', stationObject.id);
   };
 
   return (

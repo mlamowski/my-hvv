@@ -10,15 +10,12 @@ export default FavoritesEdit = ({ route, navigation }) => {
 
   return (
     <View>
-        <Text> Ich bin FavEdit für Item mit id: {itemID} </Text>
-        <Button
-            title="To FavList"
-            onPress={() => navigation.navigate("FavList") }
-        />
-        <Button
-            title="Go Back"
-            onPress={() => navigation.goBack() }
-        />
+      <Text> Ich bin FavEdit für Item mit id: {itemID} </Text>
+      
+      {/*name edit*/}
+
+      {/*name */}
+
     </View>
   )
 }
