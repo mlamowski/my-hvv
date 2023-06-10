@@ -14,61 +14,33 @@ import StationList from '../components/StationList';
 
 export default MySearchBar = ({ navigation }) => {
 
+  //states
   const [isReady, setReady] = useState(false);
-  const [data, setData] = useState([]);
+  const [stationsData, setStationsData] = useState([]);
   const [search, setSearch] = useState("");
   const [stations, setStations] = useState([]);
-  const [stationsArray, setStationsArray] = useState([]);
-
-  const [testArr, setTestArr] = useState([]);
-  const [testStation, setTestStation] = useState([]);
 
 
-
+  //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
-
-    //console.log(testArr)
-    //console.log(testStation)
-    //console.log(stationsArray[0])
-
-  })
-
-  const clickHandler = (stationObject) => {
-    //nav to edit in stacknav 
-    //setDep(id)
-    //console.log(id)
-    //console.log(data.results[0])
-    setTestStation(stationObject.stationObject)
-    setDep(testStation)
-    console.log(testArr.departures[0].line)
-
-    //navigation.navigate("LineDetails", { itemID: id })
-
-  };
-
-  const setDep = async (id) => {
-    setTestArr(await getDepartureList(id))
-  }
-
-  const updateSearch = async (search) => {
-    setSearch(search);
-    //setData(await getInit())
-
-    setData(await getCheckName(search))
-
-
-    if (data.results) {
-
-      setStations(data.results);
+    if (stationsData.results) {
       setReady(true);
-
-
+      //Erstelle neues Objekt Statiosn mit unseren stationsData Array
+      setStations((stationsData.results).map((item, index) => new Station(item)))
     } else {
       setReady(false)
     }
+  }, [stationsData]);
 
-    setStationsArray(stations.map((item, index) => new Station(item)))
+  //OnClick handler und navigation zur nächsten seite, die angeklickte station wird übergeben
+  const clickHandler = (stationObject) => {
+    navigation.navigate("LineDetails", { stationObject: stationObject })
+  };
 
+  //Wird ausgeführt, wenn Searchbar upgedatet wird
+  const updateSearch = async (search) => {
+    setSearch(search);
+    setStationsData(await getCheckName(search))
   };
 
   return (
@@ -81,7 +53,7 @@ export default MySearchBar = ({ navigation }) => {
 
       {isReady ? (
 
-        <StationList stationsData={stationsArray} clickHandler={clickHandler}/>
+        <StationList stationsData={stations} clickHandler={clickHandler}/>
 
 
     ) : (

@@ -14,11 +14,13 @@ export const getDepartureList = (INPUT) => {
  
         }, 
         "maxList": 10, 
-        "maxTimeOffset": 200, 
+        "maxTimeOffset": 60, 
         "useRealtime":true 
     }
 
-    console.log(BODY)
+    //console.log("departureListRequestBody: ")
+    //console.log(BODY)
+
     return sendRequest(BODY,PATH);
 
 
