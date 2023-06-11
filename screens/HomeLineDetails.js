@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, Button } from 'react-native';
-
 import { getDepartureList } from '../api/departureList';
-
-
+import DepartureList from '../components/DepartureList';
 
 export default HomeLineDetails = ({ route, navigation }) => {
 
-  //TODO: Die Departures müssen geupdatet werden können
-
+  //TODO: 
+  //Die Departures müssen geupdatet werden können
+  //Filterung, dass S1 Richtung Wedel zb nicht doppelt aufgelistet wird. --> Line ID & Richtung?
+  //Infos falls keine Abfahrten verfügbar sind
+  
   //Empfange Params von Seite davor
   const {stationObject} = route.params;
 
   //States
   const [isReady, setReady] = useState(false);
   const [departures, setDepartures] = useState([]);
+  // [displayedDepartures, setDisplayedDepartures] = useState([]);
+  const [filteredDepartures, setFilteredDepartures] = useState([]);
+
 
   //Api anfrage für alle Departures an der gewählten Haltestelle
   const onScreenLoad = async() => {
+    //console.log(stationObject.stationObject)
     setDepartures(await getDepartureList(stationObject.stationObject))
 
   }
@@ -28,37 +33,22 @@ export default HomeLineDetails = ({ route, navigation }) => {
 
   //Wird ausgeführt, sobald der State departures gesetzt wurde
   useEffect(() => {
-    if (departures.departures) {
+    if (departures.departures) {  
       setReady(true);
+      console.log(departures.departures)
     }
   }, [departures]);
 
-
-
   //clickhandler der zur StationDepartures führt. Die gewählte Departure wird übergeben
   const clickHandler = (item) => {
-    navigation.navigate("StationDepartures", { departure: item })
+    navigation.navigate("StationDepartures", { departure: item, stationObject: stationObject})
   };
 
   return (
     <View>
-        <Text> Ich bin LineDetails und gebe Infos zur Haltestelle {stationObject.station} </Text>
         {isReady ? (
 
-          departures.departures.map((item, index) => (
-
-            //Hier muss noch gefiltert werden, dass S1 Richtung Wedel zb nicht doppelt aufgelistet wird. --> Line ID & Richtung?
-            //Mit Line ID wird dann auch im nächsten Schritt gefiltert
-            //Styling fehlt
-            <Button 
-              key={index}
-              title={`${item.line.name}\nIn ${item.timeOffset} min\nRichtung ${item.line.direction}\nLineID: ${item.line.id}`}
-              onPress={() => clickHandler(item)}
-              >
-              
-            </Button>
-
-          ))
+        <DepartureList stationsData={departures.departures} clickHandler={clickHandler}/>
 
 ) : (
           null
