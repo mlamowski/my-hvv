@@ -1,34 +1,46 @@
-import React from 'react'
-import { Text, View, Button } from 'react-native';
-import StationListItem from "../components/StationListItem"
+import React, {useContext} from 'react'
+import { Text, View, Button, Alert, StyleSheet } from 'react-native';
 import StationList from '../components/StationList';
-import { Stations } from '../data/Dummy-data';
+import ContextManager from '../data/contextManager';
 
 
 export default FavoritesList = ({ navigation }) => {
 
-  console.log("on fav list screen load");
+  //get global context
+  const myContextManager = new ContextManager();
+  appData = myContextManager.getAppData();
+
+  //delete favorite context - takes station object to delete
+  const createTwoButtonAlert = (stationObject) =>
+    Alert.alert('Deletion', 'Delete: ' + stationObject.station + "?", [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'Delete', 
+        onPress: () => [console.log('Delete Pressed'), myContextManager.deleteFavorite(stationObject)]}, //delete fav
+  ]);
 
   //clickHandler für wenn auf eine Station in der Favlist geglickt wird
   const clickHandler = (stationObject) => {
-    //nav to edit in stacknav 
-    navigation.navigate("FavEdit", { itemID: stationObject.id });
-    console.log('Item clicked:', stationObject.id);
+    createTwoButtonAlert(stationObject)
   };
+
+  const addButtonHandler = () => {
+    navigation.navigate("FavAdd");
+  }
 
   return (
     <View>
-      <Text> Ich bin FavList </Text>
-      <Button
-          title="To FavEdit"
-          onPress={() => navigation.navigate("FavEdit") }
-      />
-      <Button
-          title="Go Back"
-          onPress={() => navigation.goBack() }
-      />
 
-      <StationList stationsData={Stations} clickHandler={clickHandler}/>
+      <StationList stationsData={appData.favorites} clickHandler={clickHandler}/>
+
+      <Button
+        title="Add Station"
+        onPress={() => addButtonHandler()}
+      />
 
     </View>
   )

@@ -12,15 +12,15 @@ export default HomeFavoritesList = ({ navigation }) => {
       <Button
             title="To StationDep"
             onPress={() => navigation.navigate("StationDepartures") }
-        />
-        <Button
-            title="To LineDet"
-            onPress={() => navigation.navigate("LineDetails") }
-        />
-        <Button
-            title="Go Back"
-            onPress={() => navigation.goBack() }
-        />
+      />
+      <Button
+          title="To LineDet"
+          onPress={() => navigation.navigate("LineDetails") }
+      />
+      <Button
+          title="Go Back"
+          onPress={() => navigation.goBack() }
+      />
     </View>
   )
 }
