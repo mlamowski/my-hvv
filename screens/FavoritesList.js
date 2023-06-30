@@ -39,12 +39,10 @@ export default FavoritesList = ({ navigation }) => {
 
       <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler}/>
 
-      <AddButton style={styles.addButton} clickHandler={addButtonHandler}/>
+      <AddButton clickHandler={addButtonHandler}/>
 
     </View>
   )
-
-  
 }
 
 const styles = StyleSheet.create({
@@ -53,20 +51,5 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: Colors.lightBackground,  
     alignItems: "center",
-    padding: 15,
-
-    
-  },
-  list: {
-    flex: 1,
-    width: "100%",
-    maxWidth: 500
-    //backgroundColor: "#000",
-    
-  },
-  addButton: {
-    //backgroundColor: "#000"
   }
-  
-
 });
