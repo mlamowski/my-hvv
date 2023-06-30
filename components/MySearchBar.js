@@ -47,16 +47,10 @@ export default MySearchBar = ({ clickHandler }) => {
       />
 
       {isReady ? (
-
         <StationList stationsData={stations} clickHandler={clickHandler}/>
-
-
-    ) : (
-      null
-
-
-      
-    )}
+      ) : (
+        null
+      )}
 
     </View>
   )
