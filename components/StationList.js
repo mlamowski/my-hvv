@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import StationListItem from './StationListItem';
 
-export default StationList = ({ stationsData, clickHandler }) => {
+export default StationList = ({ stationsData, clickHandler, style }) => {
 
     const renderItem = ({ item }) => (
         <StationListItem
@@ -13,6 +13,7 @@ export default StationList = ({ stationsData, clickHandler }) => {
 
     return (
         <FlatList
+        style={style}
         data={stationsData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

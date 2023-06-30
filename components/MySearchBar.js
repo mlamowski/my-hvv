@@ -6,7 +6,7 @@ import { getCheckName } from '../api/checkName';
 import { getDepartureList } from '../api/departureList';
 import Station from '../models/Station';
 import StationList from '../components/StationList';
-
+import { Platform } from 'react-native';
 
 export default MySearchBar = ({ clickHandler }) => {
 
@@ -40,6 +40,7 @@ export default MySearchBar = ({ clickHandler }) => {
         placeholder="Type Here..."
         onChangeText={updateSearch}
         value={search}
+        platform={"ios"}
       />
 
       {isReady ? (

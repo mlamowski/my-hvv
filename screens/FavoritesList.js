@@ -2,6 +2,8 @@ import React, {useContext} from 'react'
 import { Text, View, Button, Alert, StyleSheet } from 'react-native';
 import StationList from '../components/StationList';
 import ContextManager from '../data/contextManager';
+import AddButton from '../components/AddButton';
+import Colors from '../constants/Colors';
 
 
 export default FavoritesList = ({ navigation }) => {
@@ -33,15 +35,38 @@ export default FavoritesList = ({ navigation }) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
 
-      <StationList stationsData={appData.favorites} clickHandler={clickHandler}/>
+      <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler}/>
 
-      <Button
-        title="Add Station"
-        onPress={() => addButtonHandler()}
-      />
+      <AddButton style={styles.addButton} clickHandler={addButtonHandler}/>
 
     </View>
   )
+
+  
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: Colors.lightBackground,  
+    alignItems: "center",
+    padding: 15,
+
+    
+  },
+  list: {
+    flex: 1,
+    width: "100%",
+    maxWidth: 500
+    //backgroundColor: "#000",
+    
+  },
+  addButton: {
+    //backgroundColor: "#000"
+  }
+  
+
+});

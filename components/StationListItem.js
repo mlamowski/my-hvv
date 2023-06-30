@@ -20,7 +20,7 @@ export default StationListItem = ({ myStation, clickHandler }) => {
     const styles = StyleSheet.create({
     container: {
         padding: 10,
-        margin: 10,
+        marginBottom: 15,
         backgroundColor: Colors.accent,
         borderRadius: 10,
     },
