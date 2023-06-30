@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Colors from "../constants/Colors"
+import Style from '../constants/Style';
 
 // gets a station as a station object 
 // and a clickhandler for clicking in that station
@@ -20,7 +21,7 @@ export default StationListItem = ({ myStation, clickHandler }) => {
     const styles = StyleSheet.create({
     container: {
         padding: 10,
-        margin: 10,
+        marginBottom: Style.standartPadding,
         backgroundColor: Colors.accent,
         borderRadius: 10,
     },

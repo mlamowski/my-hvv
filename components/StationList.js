@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import StationListItem from './StationListItem';
+import Style from '../constants/Style';
 
-export default StationList = ({ stationsData, clickHandler }) => {
+export default StationList = ({ stationsData, clickHandler, style }) => {
 
     const renderItem = ({ item }) => (
         <StationListItem
@@ -13,9 +14,20 @@ export default StationList = ({ stationsData, clickHandler }) => {
 
     return (
         <FlatList
-        data={stationsData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+            style={styles.list}
+            data={stationsData}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
         />
     );
 };
+
+const styles = StyleSheet.create({
+    list: {
+        //flex: 1,
+        padding: Style.standartPadding,
+        width: "100%",
+        
+        maxWidth: 500,
+    }
+  });

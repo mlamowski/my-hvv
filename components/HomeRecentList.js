@@ -1,26 +1,33 @@
 import React from 'react'
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
+import StationList from '../components/StationList';
+import ContextManager from '../data/contextManager';
+import Colors from '../constants/Colors';
 
 
 export default HomeRecentList = ({ navigation }) => {
+
+  //get global context
+  const myContextManager = new ContextManager();
+  appData = myContextManager.getAppData();
+
+  //clickhandler for clicking on a station 
+  const clickHandler = (stationObject) => {
+    navigation.navigate("LineDetails", { stationObject: stationObject })
+  };
+
   return (
-    <View>
-      <Text>
-        Hallo, Ich bin HomeRecentList!
-      </Text>
-      
-      <Button
-            title="To StationDep"
-            onPress={() => navigation.navigate("StationDepartures") }
-        />
-        <Button
-            title="To LineDet"
-            onPress={() => navigation.navigate("LineDetails") }
-        />
-        <Button
-            title="Go Back"
-            onPress={() => navigation.goBack() }
-        />
+    <View style={styles.container}>
+      <StationList style={styles.list} stationsData={appData.recents} clickHandler={clickHandler}/>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: Colors.lightBackground,  
+    alignItems: "center",
+  }
+});
