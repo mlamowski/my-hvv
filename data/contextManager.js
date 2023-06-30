@@ -46,8 +46,11 @@ class ContextManager {
 
     //add a station to the recent list
     //todo: if a station is already on the list then remove it first 
+    //todo add stations to the beginning 
     addRecent = (newRecentStation) => {
-        let newRecents = appData.recents;
+
+        //remove station if it is already in the list 
+        let newRecents = appData.recents.filter(recent => recent.id !== newRecentStation.id);
         newRecents.push(newRecentStation)
         setAppData(appData => ({
             favorites: appData.favorites,
@@ -70,7 +73,16 @@ class ContextManager {
         }
 
         console.log(storeData(appData));
-           
+    }
+
+    //delete all recents
+    deleteRecents = () => {
+        setAppData(appData => ({
+            favorites: appData.favorites,
+            recents: [],
+        }));
+
+        console.log(storeData(appData));
     }
 }
   

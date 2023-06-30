@@ -11,6 +11,8 @@ export default HomeRecentList = ({ navigation }) => {
   const myContextManager = new ContextManager();
   appData = myContextManager.getAppData();
 
+  //myContextManager.deleteRecents();
+
   //clickhandler for clicking on a station 
   const clickHandler = (stationObject) => {
     navigation.navigate("LineDetails", { stationObject: stationObject })
@@ -18,7 +20,8 @@ export default HomeRecentList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StationList style={styles.list} stationsData={appData.recents} clickHandler={clickHandler}/>
+      {/* recent list is reversed so the latest entry is at the top */}
+      <StationList style={styles.list} stationsData={appData.recents.reverse()} clickHandler={clickHandler}/>
     </View>
   )
 }
