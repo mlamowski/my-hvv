@@ -6,10 +6,14 @@ import HomeTopTabNavigator from '../navigation/HomeTopTabNavigator';
 import MySearchBar from '../components/MySearchBar';
 
 export default HomeScreen = ({ navigation }) => {
+  
+  const clickHandler = (stationObject) => {
+    navigation.navigate("LineDetails", { stationObject: stationObject })
+  };
   return (
     //WTF?!
     <Fragment>
-        <MySearchBar navigation={navigation}/>
+        <MySearchBar navigation={navigation} clickHandler={clickHandler}/>
         <HomeTopTabNavigator/>
     </Fragment>
   )

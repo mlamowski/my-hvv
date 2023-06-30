@@ -8,7 +8,7 @@ import Station from '../models/Station';
 import StationList from '../components/StationList';
 
 
-export default MySearchBar = ({ navigation }) => {
+export default MySearchBar = ({ navigation, clickHandler }) => {
 
   //states
   const [isReady, setReady] = useState(false);
@@ -26,12 +26,10 @@ export default MySearchBar = ({ navigation }) => {
     } else {
       setReady(false)
     }
-  }, [stationsData]);
+  }, [stationsData])
 
   //OnClick handler und navigation zur nächsten seite, die angeklickte station wird übergeben
-  const clickHandler = (stationObject) => {
-    navigation.navigate("LineDetails", { stationObject: stationObject })
-  };
+
 
   //Wird ausgeführt, wenn Searchbar upgedatet wird
   const updateSearch = async (search) => {
