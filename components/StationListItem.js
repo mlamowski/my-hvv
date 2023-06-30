@@ -2,6 +2,8 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Colors from "../constants/Colors"
 
+// gets a station as a station object 
+// and a clickhandler for clicking in that station
 export default StationListItem = ({ myStation, clickHandler }) => {
 
     //console.log("station item mystation: ", myStation);
