@@ -7,7 +7,6 @@ export default HomeLineDetails = ({ route, navigation }) => {
 
   //TODO: 
   //Die Departures müssen geupdatet werden können
-  //Filterung, dass S1 Richtung Wedel zb nicht doppelt aufgelistet wird. --> Line ID & Richtung?
   //Infos falls keine Abfahrten verfügbar sind
   
   //Empfange Params von Seite davor
@@ -16,13 +15,11 @@ export default HomeLineDetails = ({ route, navigation }) => {
   //States
   const [isReady, setReady] = useState(false);
   const [departures, setDepartures] = useState([]);
-  // [displayedDepartures, setDisplayedDepartures] = useState([]);
   const [filteredDepartures, setFilteredDepartures] = useState([]);
 
 
   //Api anfrage für alle Departures an der gewählten Haltestelle
   const onScreenLoad = async() => {
-    //console.log(stationObject.stationObject)
     setDepartures(await getDepartureList(stationObject.stationObject))
 
   }
@@ -34,21 +31,71 @@ export default HomeLineDetails = ({ route, navigation }) => {
   //Wird ausgeführt, sobald der State departures gesetzt wurde
   useEffect(() => {
     if (departures.departures) {  
-      setReady(true);
-      console.log(departures.departures)
+      filterDepartures()
     }
   }, [departures]);
 
-  //clickhandler der zur StationDepartures führt. Die gewählte Departure wird übergeben
+  //Funktion, um alle Departures die unter die selbe Linie fallen gruppiert werden.
+  //Außerdem wird zwischen der richtungdID der linien unterschieden. es gibt vorwärts(1) und rückwärts(6)
+  const filterDepartures = () => {
+    //Erstellung eines temp arrays, da durch react natives async verhalten die daten nicht direkt ins array gepusht werden
+    const filteredDepsTempArray = []
+
+    departures.departures.forEach((dep) => {
+      const lineName = dep.line.name; 
+      //Abfrage, ob sich der lineName bereits in der tempListe befindet
+      if(filteredDepsTempArray.some(obj => obj.name == lineName)) {
+        //Wenn ja: departure zur passenden linie zuordnen, dabei wird zwischen vorwaerts und rueckwärts unterschieden
+        const directionID = dep.directionId
+        //richtige stelle suchen
+        const existingElement = filteredDepsTempArray.find((el) => el.name === lineName);
+        
+        //departure entweder zu vorwaerts oder zu rueckwaerts pushen
+        if (directionID == 1) {
+          existingElement.vorwaerts.push(dep);
+        } else {
+          existingElement.rueckwaerts.push(dep);
+        }
+
+      } else {
+        //wenn nein wird ein neues element erstellt mit dem aktuellen departure object
+        const newElement = {
+          name: lineName,
+          vorwaerts: [],
+          rueckwaerts: []
+        };
+        //departure entweder zu vorwaerts oder zu rueckwaerts pushen
+        if (dep.directionId == 1) {
+          newElement.vorwaerts.push(dep);
+        } else {
+          newElement.rueckwaerts.push(dep);
+        }
+        //neu erstelltes element pushen.
+        filteredDepsTempArray.push(newElement);
+      }
+    })
+    
+    setFilteredDepartures(filteredDepsTempArray)
+  }
+
+  useEffect(() => {
+    if (filteredDepartures) {  
+      setReady(true);
+    }
+  }, [filteredDepartures]);
+
+  //clickhandler der zur StationDepartures führt. Die gewählte line wird übergeben und die station an der man sich befindet
   const clickHandler = (item) => {
-    navigation.navigate("StationDepartures", { departure: item, stationObject: stationObject})
+    navigation.navigate("StationDepartures", { line: item, stationObject: stationObject})
   };
 
   return (
     <View>
+
+      
         {isReady ? (
 
-        <DepartureList stationsData={departures.departures} clickHandler={clickHandler}/>
+        <DepartureList stationsData={filteredDepartures} clickHandler={clickHandler}/>
 
 ) : (
           null

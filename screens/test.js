@@ -72,3 +72,46 @@ const styles = StyleSheet.create({
   },
 });
 */
+
+//Wird ausgeführt, sobald screen geladen ist
+useEffect(() => {
+  onScreenLoad();
+}, [])
+
+//Zielrichtung muss gesplittet werden, da sonst strings wie Poppelbüttel / Airport probleme machen. Neue Strings dann als Array setzen
+const onScreenLoad = async() => {
+  let text = departure.line.direction
+  setDirectionName(text.split("/"))
+}
+
+//Sobald die Daten im Array gespeichertn sind directionDataFunc aufrufen --> dauert halt bissl immer ....
+useEffect(() => {
+  if (directionName) {
+      directionDataFunc()
+  }
+}, [directionName]);
+
+//Den Namen der Zielrichtung checken
+//später ggf noch sagen if error: next index
+const directionDataFunc = async() => {
+  setDirectionData(await getCheckName(directionName[0]))
+}
+
+//wenn daten da sind, filteresDepList func aufrufen
+useEffect(() => {
+  if (directionData.results) {
+      filteresDepList();
+  }
+}, [directionData]);
+
+//jetzt wird die gefilterte liste von der api geholt und gesetzt
+const filteresDepList = async() => {
+  setFilteredDepartures(await getFilteredDepartureList(stationObject.stationObject, departure.line.id, directionData.results[0].id))
+}
+
+//Wird ausgeführt, sobald der State filteredDepartures gesetzt wurde
+useEffect(() => {
+  if (filteredDepartures.departures) {  
+    setReady(true);
+  }
+}, [filteredDepartures]);

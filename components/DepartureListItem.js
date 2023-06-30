@@ -11,17 +11,20 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
         style={styles.container} 
         onPress={() => clickHandler(myStation)}>
         <Text style={styles.text}>
-            {myStation.line.name}
+            {myStation.name}
         </Text>
         <Text style={styles.text}>
-            In {myStation.timeOffset} min
+            vorwärts: 
         </Text>
+        {myStation.vorwaerts.map((element, index) => (
+        <Text key={index}  style={styles.text}>{element.timeOffset + " min "} </Text>
+      ))}
         <Text style={styles.text}>
-            Richtung {myStation.line.direction}
+            rückwärts: 
         </Text>
-        <Text style={styles.text}>
-            ID {myStation.serviceId}
-        </Text>
+        {myStation.rueckwaerts.map((element, index) => (
+        <Text key={index}  style={styles.text}>{element.timeOffset + " min "} </Text>
+      ))}
         </TouchableOpacity>
     );
     };

@@ -25,7 +25,7 @@ export const getDepartureList = (STATION) => {
 
 }
 
-export const getFilteredDepartureList = (STATION, SERVICE_ID, STATION_ID) => {
+export const getFilteredDepartureList = (STATION, SERVICE_ID) => {
 
     const BODY = 
     { 
@@ -37,7 +37,6 @@ export const getFilteredDepartureList = (STATION, SERVICE_ID, STATION_ID) => {
         "maxList": 10, 
         "filter": {
             "serviceID": SERVICE_ID,
-            "stationIDs": STATION_ID,
         },
         "maxTimeOffset": 60, 
         "useRealtime":true 

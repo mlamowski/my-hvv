@@ -28,9 +28,6 @@ export default MySearchBar = ({ navigation, clickHandler }) => {
     }
   }, [stationsData])
 
-  //OnClick handler und navigation zur nächsten seite, die angeklickte station wird übergeben
-
-
   //Wird ausgeführt, wenn Searchbar upgedatet wird
   const updateSearch = async (search) => {
     setSearch(search);

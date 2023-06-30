@@ -11,7 +11,6 @@ export default HomeScreen = ({ navigation }) => {
     navigation.navigate("LineDetails", { stationObject: stationObject })
   };
   return (
-    //WTF?!
     <Fragment>
         <MySearchBar navigation={navigation} clickHandler={clickHandler}/>
         <HomeTopTabNavigator/>
