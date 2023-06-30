@@ -1,36 +1,55 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
+import { TouchableOpacity, View,ScrollView, Text, StyleSheet, Dimensions  } from 'react-native';
 import Colors from "../constants/Colors"
 
 export default DepartureListItem = ({ myStation, clickHandler }) => {
 
-    //console.log("station item mystation: ", myStation);
+    const scrollViewRef = useRef(null);
+
+    const handleLayout = () => {
+        const screenWidth = Dimensions.get('window').width;
+        scrollViewRef.current.scrollTo({ x: screenWidth, animated: false });
+    };
+  
 
     return (
-        <TouchableOpacity 
-        style={styles.container} 
-        onPress={() => clickHandler(myStation)}>
+        <View 
+        style={styles.container} >
         <Text style={styles.text}>
             {myStation.name}
         </Text>
-        <Text style={styles.text}>
-            vorwärts: 
-        </Text>
-        {myStation.vorwaerts.map((element, index) => (
-        <Text key={index}  style={styles.text}>{element.timeOffset + " min "} </Text>
-      ))}
-        <Text style={styles.text}>
-            rückwärts: 
-        </Text>
-        {myStation.rueckwaerts.map((element, index) => (
-        <Text key={index}  style={styles.text}>{element.timeOffset + " min "} </Text>
-      ))}
-        </TouchableOpacity>
+        <ScrollView
+            ref={scrollViewRef}
+            horizontal
+            pagingEnabled
+            onLayout={handleLayout}
+            >
+            <TouchableOpacity style={{ width: Dimensions.get('window').width }}>
+                <Text style={styles.text}>
+                        Vorwärts: 
+                </Text >
+                {myStation.vorwaerts.map((element, index) => (
+                <Text key={index} style={styles.text}>{element.timeOffset + " min "} 
+                </Text>
+                ))}
+            </TouchableOpacity>
+            <TouchableOpacity style={{ width: Dimensions.get('window').width }}>
+                <Text style={styles.text}>
+                    Rückwärts: 
+                </Text>
+                    {myStation.rueckwaerts.map((element, index) => (
+                    <Text key={index}  style={styles.text}>{element.timeOffset + " min "} 
+                </Text>
+                ))}
+            </TouchableOpacity>
+        </ScrollView>
+        </View>
     );
     };
 
     const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
         padding: 10,
         margin: 10,
         backgroundColor: Colors.accent,
@@ -38,6 +57,43 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
     },
     text: {
         fontSize: 16,
-        color: Colors.textLight
+        color: Colors.textLight,
     },
 });
+
+{/*
+
+        <View 
+        style={styles.container} >
+        <Text style={styles.text}>
+            {myStation.name}
+        </Text>
+        <ScrollView
+            ref={scrollViewRef}
+            horizontal
+            pagingEnabled
+            onLayout={handleLayout}
+            >
+            <View style={{ width: Dimensions.get('window').width }}>
+                <Text style={styles.text}>
+                        Vorwärts: 
+                </Text >
+                {myStation.vorwaerts.map((element, index) => (
+                <Text key={index} style={styles.text}>{element.timeOffset + " min "} 
+                </Text>
+                ))}
+            </View>
+            <View style={{ width: Dimensions.get('window').width }}>
+                <Text style={styles.text}>
+                    Rückwärts: 
+                </Text>
+                    {myStation.rueckwaerts.map((element, index) => (
+                    <Text key={index}  style={styles.text}>{element.timeOffset + " min "} 
+                </Text>
+                ))}
+            </View>
+        </ScrollView>
+        </View>
+
+
+*/}
