@@ -8,7 +8,7 @@ import Station from '../models/Station';
 import StationList from '../components/StationList';
 
 
-export default MySearchBar = ({ navigation, clickHandler }) => {
+export default MySearchBar = ({ clickHandler }) => {
 
   //states
   const [isReady, setReady] = useState(false);

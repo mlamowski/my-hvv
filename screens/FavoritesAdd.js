@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import { Text, View, Button } from 'react-native';
 import Station from '../models/Station';
 import ContextManager from '../data/contextManager';
+import MySearchBar from '../components/MySearchBar';
 
 
 export default FavoritesAdd = ({ navigation }) => {
@@ -15,18 +16,17 @@ export default FavoritesAdd = ({ navigation }) => {
     myContextManager.addFavorite(new Station({"city": "Hamburg", "combinedName": "Barmbek", "coordinate": {"x": 10.04445, "y": 53.587397}, "globalId": "de:02000:70950", "hasStationInformation": true, "id": "Master:70950", "name": "Barmbek", "serviceTypes": ["bus", "u", "s"], "type": "STATION"}));
   }
 
+  //onlickhandler for clicking on a searched station - gets a station object 
+  const clickHandler = (stationObject) => {
+    //add station to favs 
+    console.log("add station");
+    myContextManager.addFavorite(stationObject)
+  };
+
   return (
     <View>
       
-      <Button
-        title="Add Station"
-        onPress={() => testButtonHandler()}
-      />
-
-      <Button
-        title="Back"
-        onPress={()=>{navigation.goBack()}}
-      />
+      <MySearchBar clickHandler={clickHandler}/>
 
     </View>
   )
