@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     width: "100%",
+    maxWidth: 500
     //backgroundColor: "#000",
     
   },
