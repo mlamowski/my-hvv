@@ -11,9 +11,26 @@ const Stack = createStackNavigator();
 
 export default function FavoritesNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="FavList" component={FavList} />
-      <Stack.Screen name="FavAdd" component={FavAdd} />
+    <Stack.Navigator
+      initialRouteName="FavList"
+      screenOptions={{
+        //headerShown: false,
+      }}
+    >
+      <Stack.Screen 
+        name="FavList" 
+        component={FavList} 
+        options={{
+          title: "Deine Favoriten",
+        }}
+      />
+      <Stack.Screen 
+        name="FavAdd" 
+        component={FavAdd} 
+        options={{
+          title: "Favorit Hinzufügen",
+        }}
+      />
     </Stack.Navigator>
   )
 }

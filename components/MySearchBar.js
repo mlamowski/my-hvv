@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {ActivityIndicator, Text, View, Button } from 'react-native';
+import {ActivityIndicator, Text, View, Button, StyleSheet } from 'react-native';
 import { SearchBar } from '@rneui/themed';
 import { getInit } from '../api/init'
 import { getCheckName } from '../api/checkName';
@@ -7,6 +7,8 @@ import { getDepartureList } from '../api/departureList';
 import Station from '../models/Station';
 import StationList from '../components/StationList';
 import { Platform } from 'react-native';
+import Style from '../constants/Style';
+import Colors from '../constants/Colors';
 
 export default MySearchBar = ({ clickHandler }) => {
 
@@ -35,20 +37,39 @@ export default MySearchBar = ({ clickHandler }) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+      
       <SearchBar
+        containerStyle={styles.searchbar}
         placeholder="Type Here..."
         onChangeText={updateSearch}
         value={search}
         platform={"ios"}
       />
+      
 
       {isReady ? (
         <StationList stationsData={stations} clickHandler={clickHandler}/>
       ) : (
         null
       )}
+      
 
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    
+    alignItems: "center",
+    backgroundColor: "white",  
+
+  }, 
+  searchbar: {
+    width: "100%",
+    maxWidth: 600,
+    backgroundColor: "white",
+    paddingHorizontal: 5,
+  }
+})
