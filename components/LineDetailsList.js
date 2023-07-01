@@ -6,8 +6,8 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
 
     const renderItem = ({ item }) => (
         <LineDetailsListItem
-        myLine={item}
-        clickHandler={clickHandler}
+            myLine={item}
+            clickHandler={clickHandler}
         />
     );
 
@@ -17,9 +17,9 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
                 {lineName}
             </Text>
             <FlatList
-            data={lineData}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.serviceId}
+                data={lineData}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.serviceId}
             />
         </View>
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
 import { getDepartureList } from '../api/departureList';
 import DepartureList from '../components/DepartureList';
+import Style from '../constants/Style';
+import Colors from '../constants/Colors';
 
 export default HomeLineDetails = ({ route, navigation }) => {
 
@@ -90,16 +92,28 @@ export default HomeLineDetails = ({ route, navigation }) => {
   };
 
   return (
-    <View>
-
-      
-        {isReady ? (
-
-        <DepartureList stationsData={filteredDepartures} clickHandler={clickHandler}/>
-
-) : (
-          null
-        )}
+    <View style={styles.container}>
+      {isReady ? (
+        <View style={styles.list}>
+          <DepartureList stationsData={filteredDepartures} clickHandler={clickHandler}/>
+        </View>
+      ) : (
+        null
+      )}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: Colors.lightBackground
+    
+  }, 
+  list: {
+    width: "100%",
+    
+  }
+});

@@ -1,3 +1,5 @@
 export default {
-    standartPadding: 15,
+    standartPadding: 10,
+    standartMargin: 15,
+    listItemRadius: 10,
   };

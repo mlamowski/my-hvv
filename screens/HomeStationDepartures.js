@@ -43,17 +43,11 @@ export default HomeStationDepartures = ({ route, navigation }) => {
   
   return (
     <View>
-
-      
-        {isReady ? (
-
-          <LineDetailsList lineName={line.name} lineData={filteredDepartures} clickHandler={clickHandler}/>
-
-) : (
-          null
-        )}
+      {isReady ? (
+        <LineDetailsList lineName={line.name} lineData={filteredDepartures} clickHandler={clickHandler}/>
+      ) : (
+        null
+      )}
     </View>
   )
 }
-
-
