@@ -21,7 +21,7 @@ export default HomeRecentList = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* recent list is reversed so the latest entry is at the top */}
-      <StationList style={styles.list} stationsData={appData.recents.reverse()} clickHandler={clickHandler}/>
+      <StationList style={styles.list} stationsData={appData.recents} clickHandler={clickHandler}/>
     </View>
   )
 }

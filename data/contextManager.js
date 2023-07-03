@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, Component} from 'react'
 import Station from '../models/Station';
 import { myHvvContext } from '../data/myHvvContext';
 import { storeData } from './AppStorage';
@@ -14,7 +14,6 @@ class ContextManager {
     constructor() {
         setAppData = useContext(myHvvContext)[1];
     }
- 
 
     //return appdata state
     getAppData = () => {
@@ -38,7 +37,7 @@ class ContextManager {
                 favorites: newFavorites,
                 recents: appData.recents,
             }));
-            storeData(this.appData);
+            //storeData(this.appData);
         }
 
     }
@@ -51,13 +50,21 @@ class ContextManager {
 
         //remove station if it is already in the list 
         let newRecents = appData.recents.filter(recent => recent.id !== newRecentStation.id);
-        newRecents.push(newRecentStation)
+        newRecents.unshift(newRecentStation)
         setAppData(appData => ({
             favorites: appData.favorites,
             recents: newRecents,
         }));
-        storeData(this.appData);
+
+        newRecents.forEach(element => {
+            console.log(element.station);
+        });
+
+        //console.log(storeData(this.appData));
+
     }
+
+    
 
 
     //delete a favorite 
@@ -72,7 +79,7 @@ class ContextManager {
             console.log(fav);
         }
 
-        console.log(storeData(appData));
+        //console.log(storeData(appData));
     }
 
     //delete all recents
@@ -82,7 +89,7 @@ class ContextManager {
             recents: [],
         }));
 
-        console.log(storeData(appData));
+        //console.log(storeData(appData));
     }
 }
   

@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import { Text, View, Button, Alert, StyleSheet } from 'react-native';
 import StationList from '../components/StationList';
 import ContextManager from '../data/contextManager';
 import AddButton from '../components/AddButton';
 import Colors from '../constants/Colors';
 import PageTitle from '../components/PageTitle';
+import { storeData } from '../data/AppStorage';
 
 
 export default FavoritesList = ({ navigation }) => {
@@ -12,6 +13,12 @@ export default FavoritesList = ({ navigation }) => {
   //get global context
   const myContextManager = new ContextManager();
   appData = myContextManager.getAppData();
+
+  //useEffect for saving 
+  useEffect(() => {
+    storeData(appData);
+  }, [appData])
+
 
   //delete favorite context - takes station object to delete
   const createTwoButtonAlert = (stationObject) =>
