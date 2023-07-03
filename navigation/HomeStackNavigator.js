@@ -16,9 +16,7 @@ export default function HomeNavigator() {
       screenOptions={{
         //hide the very thin line under the header 
         headerShadowVisible: false,
-        
       }}
-    
     >
       <Stack.Screen 
         name="HomeScreen" 

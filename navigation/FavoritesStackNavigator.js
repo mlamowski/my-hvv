@@ -15,6 +15,8 @@ export default function FavoritesNavigator() {
       initialRouteName="FavList"
       screenOptions={{
         //headerShown: false,
+        //hide the very thin line under the header 
+        headerShadowVisible: false,
       }}
     >
       <Stack.Screen 

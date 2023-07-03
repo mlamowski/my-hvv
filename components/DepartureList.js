@@ -29,5 +29,9 @@ export default DepartureList = ({ stationsData, clickHandler }) => {
 const styles = StyleSheet.create({
     container: {    
         height: "100%",
+        maxWidth: 600,
+        width: "100%",
+        flex: 1,
+        paddingHorizontal: Style.standartMargin
     }
 });
