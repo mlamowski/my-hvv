@@ -9,27 +9,27 @@ import Station from '../models/Station';
 
 export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandlerToNav}) => {
   const [hasPermission, setHasPermission] = useState(null);
-  const [stations, setStations] = useState([]);
+  const [stations, setStations] = useState({});
   const [stationsData, setStationsData] = useState([]);
   const [scanned, setScanned] = useState(false);
 
 
   useEffect(() => {
-      getBarCodeScannerPermissions();
-    });
+    getBarCodeScannerPermissions();
+  });
 
   //Permission setzen
   const getBarCodeScannerPermissions = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    };
+    const { status } = await BarCodeScanner.requestPermissionsAsync();
+    setHasPermission(status === 'granted');
+  };
 
   //Wird ausgeführt, wenn QR-Code gescannt wurde 
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     //Von api stationsobjekt bekommen
     setStationsData(await getOneCheckName(data))
-    alert(`Bar code with type ${type} and data ${data} has been scanned!` );
+    //alert(`Bar code with type ${type} and data ${data} has been scanned!` );
   };
 
 
@@ -45,9 +45,10 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
   //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
     console.log("stations: 0 " + stations.length);
-    if (stations[0] != null) {
+    console.log(stations);
+    if (stations.id != undefined) {
       setScanned(false);
-      console.log(stations);
+      console.log("execurte clickhandler" + stations);
       clickHandlerCloseModal();
       clickHandlerToNav(stations)
 

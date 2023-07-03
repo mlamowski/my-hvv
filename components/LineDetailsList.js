@@ -24,7 +24,7 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
             <FlatList
                 data={lineData}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.serviceId + item.timeOffset}
+                keyExtractor={(item) => item.serviceId + (Math.floor(Math.random() * 1000) + 1)}
             />
         </View>
 
