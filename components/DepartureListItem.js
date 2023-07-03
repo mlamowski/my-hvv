@@ -6,13 +6,7 @@ import Style from '../constants/Style';
 export default DepartureListItem = ({ myStation, clickHandler }) => {
 
     const scrollViewRef = useRef(null);
-
-    const handleLayout = () => {
-        const screenWidth = Dimensions.get('window').width;
-        //scrollViewRef.current.scrollTo({ x: screenWidth, animated: false });
-    };
   
-
     return (
         <View //einzelnes list item
             style={styles.container} 
@@ -23,9 +17,6 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
                 horizontal
                 
                 contentContainerStyle={styles.scrollview}
-                //style={styles.scrollview}
-                //pagingEnabled
-                //onLayout={handleLayout}
             >
 
                 <View style={styles.lineNameBox}>
