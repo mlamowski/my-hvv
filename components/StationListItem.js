@@ -26,18 +26,18 @@ export default StationListItem = ({ myStation, clickHandler }) => {
             <Text style={styles.text}>{myStation.station}</Text>
         </Pressable>
     );
-    };
+};
 
-    const styles = StyleSheet.create({
-        container: {
-            padding: Style.standartPadding,
-            marginBottom: Style.standartMargin,
-            backgroundColor: Colors.accent,
-            borderRadius: Style.listItemRadius,
-            
-        },
-        text: {
-            fontSize: 16,
-            color: Colors.textLight
-        },
+const styles = StyleSheet.create({
+    container: {
+        padding: Style.standartPadding,
+        marginBottom: Style.standartMargin,
+        backgroundColor: Colors.accent,
+        borderRadius: Style.listItemRadius,
+        
+    },
+    text: {
+        fontSize: 16,
+        color: Colors.textLight
+    },
 });

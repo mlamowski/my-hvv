@@ -4,6 +4,7 @@ import StationList from '../components/StationList';
 import ContextManager from '../data/contextManager';
 import AddButton from '../components/AddButton';
 import Colors from '../constants/Colors';
+import PageTitle from '../components/PageTitle';
 
 
 export default FavoritesList = ({ navigation }) => {
@@ -36,6 +37,8 @@ export default FavoritesList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+
+      <PageTitle title={"Deine Favoriten"}/>
 
       <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler}/>
 

@@ -109,11 +109,13 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     alignItems: "center",
-    backgroundColor: Colors.lightBackground
+    backgroundColor: Colors.lightBackground,
+    flex: 1,
     
   }, 
   list: {
     width: "100%",
-    
+    alignItems: "center",
+    flex: 1,
   }
 });

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { TouchableOpacity, View,ScrollView, Text, StyleSheet, Dimensions, Pressable  } from 'react-native';
+import { View,ScrollView, Text, StyleSheet, Dimensions, Pressable  } from 'react-native';
 import Colors from "../constants/Colors"
 import Style from '../constants/Style';
 
@@ -11,50 +11,57 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
         <View //einzelnes list item
             style={styles.container} 
         >
+
+            <View style={styles.lineNameBox}>
+                <Text style={styles.text}>  
+                    {myStation.name}
+                </Text>
+            </View>
             
-            <ScrollView
-                ref={scrollViewRef}
-                horizontal
-                
-                contentContainerStyle={styles.scrollview}
-            >
+            <View style={styles.scrollview}>
+                <ScrollView
+                    ref={scrollViewRef}
+                    horizontal
+                    //pagingEnabled
+                >
 
-                <View style={styles.lineNameBox}>
-                    <Text style={styles.text}>  
-                        {myStation.name}
-                    </Text>
-                </View>
-
-                <View style={styles.vorwaertsBox}>
-                    <Pressable>
-                        <Text style={styles.text}>
-                                Vorwärts: 
-                        </Text>
-
-                        {myStation.vorwaerts.map((element, index) => (
-                            <Text 
-                                key={index} style={styles.text}>{element.timeOffset + " min "} 
+                    <View >
+                        <Pressable 
+                            onPress={() => clickHandler(myStation, 1)}
+                            style={styles.vorwaertsBox}
+                        >
+                            <Text style={styles.text}>
+                                    Vorwärts: 
                             </Text>
-                        ))}
 
-                    </Pressable>
-                </View>
+                            {myStation.vorwaerts.map((element, index) => (
+                                <Text 
+                                    key={index} style={styles.text}>{element.timeOffset + " min "} 
+                                </Text>
+                            ))}
 
-                <View style={styles.rueckwaertsBox}>
-                    <Pressable>
-                        <Text style={styles.text}>
-                            Rückwärts: 
-                        </Text>
+                        </Pressable>
+                    </View>
 
-                        {myStation.rueckwaerts.map((element, index) => (
-                            <Text 
-                                key={index}  style={styles.text}>{element.timeOffset + " min "} 
+                    <View >
+                        <Pressable
+                            onPress={() => clickHandler(myStation, 6)}
+                            style={styles.rueckwaertsBox}
+                        >
+                            <Text style={styles.text}>
+                                Rückwärts: 
                             </Text>
-                        ))}
-                    </Pressable>
-                </View>
 
-            </ScrollView>
+                            {myStation.rueckwaerts.map((element, index) => (
+                                <Text 
+                                    key={index}  style={styles.text}>{element.timeOffset + " min "} 
+                                </Text>
+                            ))}
+                        </Pressable>
+                    </View>
+
+                </ScrollView>
+            </View>
             
         </View>
     );
@@ -62,53 +69,46 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         flexDirection: 'row',
+        width: "100%",
         marginBottom: Style.standartMargin,
-        //width: 500.
-        //height: 100,
-        //backgroundColor: Colors.accent
+        //paddingHorizontal: Style.standartMargin
+        
+        
     },
     text: {
         color: Colors.textLight,
     },
-    scrollview: {
-        
-        minWidth: "100%",
-        justifyContent: "center",
-        //marginLeft: Style.standartMargin,
-        
-        
-    }, 
     lineNameBox: {
         backgroundColor: Colors.accent,
-        //padding: 20,
-        marginRight: 20,
-        marginLeft: Style.standartMargin,
+        padding: 20,
+        marginRight: Style.standartMargin,
         minHeight: 80,
         width: 80,
         justifyContent: "center",
         alignItems: "center",
         borderRadius: Style.listItemRadius,
     },
-    vorwaertsBox: {
+    scrollview: {
+        flex: 1,
         backgroundColor: Colors.accent,
-        padding: Style.standartPadding,
-        marginRight: 20,
-        justifyContent: "center",
-        alignItems: "flex-start",
-        //height: 80,
-        width: 200,
         borderRadius: Style.listItemRadius,
+    }, 
+    vorwaertsBox: {
+        padding: Style.standartPadding,
+        //justifyContent: "flex-start",
+        //alignItems: "flex-start",
+        width: 200,
+        height: "100%"
+        
     },
     rueckwaertsBox:{
-        backgroundColor: Colors.accent,
         padding: Style.standartPadding,
-        justifyContent: "center",
-        alignItems: "flex-start",
-        //height: 80,
+        //justifyContent: "flex-start",
+        //alignItems: "flex-start",
         width: 200,
-        borderRadius: Style.listItemRadius,
-        marginRight: Style.standartMargin,
+        height: "100%",
     }
 });
 
