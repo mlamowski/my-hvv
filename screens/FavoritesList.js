@@ -38,7 +38,7 @@ export default FavoritesList = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      <PageTitle title={"Deine Favoriten"}/>
+      <PageTitle smallTitle={"Deine"} bigTitle={"Favoriten"}/>
 
       <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler}/>
 

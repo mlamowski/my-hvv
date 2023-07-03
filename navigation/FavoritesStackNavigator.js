@@ -9,21 +9,40 @@ import FavList from '../screens/FavoritesList';
 
 const Stack = createStackNavigator();
 
+import { getHeaderTitle } from '@react-navigation/elements';
+import FavNavHeader from '../components/FavNavHeader';
+
+customHeader: ({ navigation, route, options, back }) => {
+  const title = getHeaderTitle(options, route.name);
+
+  return (
+    <MyHeader
+      title={title}
+      leftButton={
+        back ? <MyBackButton onPress={navigation.goBack} /> : undefined
+      }
+      style={options.headerStyle}
+    />
+  );
+};
+
 export default function FavoritesNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="FavList"
+      
       screenOptions={{
         //headerShown: false,
         //hide the very thin line under the header 
         headerShadowVisible: false,
+        //customHeader: {customHeader},
       }}
     >
       <Stack.Screen 
         name="FavList" 
         component={FavList} 
         options={{
-          title: "Deine Favoriten",
+          title: "Favoriten",
         }}
       />
       <Stack.Screen 

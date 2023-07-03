@@ -37,7 +37,10 @@ const styles = StyleSheet.create({
         
     },
     text: {
-        fontSize: 16,
-        color: Colors.textLight
+        fontFamily: Style.fontFamilyRegular,
+        fontSize: Style.fontSizeText,
+        color: Colors.textLight,
+        
+
     },
 });

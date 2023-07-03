@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Colors from "../constants/Colors"
+import Style from '../constants/Style';
 
 export default LineDetailsListItem = ({ myLine, clickHandler }) => {
 
@@ -25,7 +26,8 @@ export default LineDetailsListItem = ({ myLine, clickHandler }) => {
         borderRadius: 10,
     },
     text: {
-        fontSize: 16,
+        fontSize: Style.fontSizeText,
         color: Colors.textLight
+
     },
 });

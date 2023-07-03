@@ -3,18 +3,22 @@ import { TouchableOpacity, Text, StyleSheet, Pressable, View } from 'react-nativ
 import Colors from "../constants/Colors"
 import Style from '../constants/Style';
 
-
-// gets a station as a station object 
-// and a clickhandler for clicking in that station
-export default PageTitle = ({ title }) => {
+export default PageTitle = ({ smallTitle, bigTitle }) => {
 
     return (
         <View style={styles.whiteBackground}>
+
             <View style={styles.container}>
-                <Text>
-                    {title}
+
+                <Text style={styles.smallTitle}>
+                    {smallTitle}
                 </Text>
+                <Text style={styles.bigTitle}>
+                    {bigTitle}
+                </Text>
+
             </View>
+
         </View>
     );
 };
@@ -28,9 +32,18 @@ export default PageTitle = ({ title }) => {
         container: {
             maxWidth: 550,
             width: "100%",
+            paddingHorizontal: Style.standartMargin,
+            paddingBottom: Style.standartMargin
         },
-        text: {
-            fontSize: 16,
-            color: Colors.textLight
+        smallTitle: {
+            fontSize: Style.fontSizeText,
+            fontFamily: Style.fontFamilyRegular,
+            color: Colors.textDark
+        },
+        bigTitle: {
+            fontSize: Style.fontSizeHeader,
+            fontFamily: Style.fontFamilyRegular,
+            color: Colors.textDark,
+            //lineHeight: 5,
         },
 });
