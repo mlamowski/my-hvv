@@ -45,6 +45,9 @@ export default HomeLineDetails = ({ route, navigation }) => {
 
     departures.departures.forEach((dep) => {
       const lineName = dep.line.name; 
+      const lineID = dep.line.id; 
+      console.log("dep:");
+      console.log(dep);
       //Abfrage, ob sich der lineName bereits in der tempListe befindet
       if(filteredDepsTempArray.some(obj => obj.name == lineName)) {
         //Wenn ja: departure zur passenden linie zuordnen, dabei wird zwischen vorwaerts und rueckwärts unterschieden
@@ -63,6 +66,7 @@ export default HomeLineDetails = ({ route, navigation }) => {
         //wenn nein wird ein neues element erstellt mit dem aktuellen departure object
         const newElement = {
           name: lineName,
+          serviceID: lineID,
           vorwaerts: [],
           rueckwaerts: []
         };
@@ -88,7 +92,7 @@ export default HomeLineDetails = ({ route, navigation }) => {
 
   //clickhandler der zur StationDepartures führt. Die gewählte line wird übergeben und die station an der man sich befindet
   const clickHandler = (item, direction) => {
-    navigation.navigate("StationDepartures", { line: item,  direction: direction, stationObject: stationObject})
+    navigation.navigate("StationDepartures", { line: item, serviceID: item.serviceID, direction: direction, stationObject: stationObject})
   };
 
   return (

@@ -7,12 +7,12 @@ import LineDetailsList from '../components/LineDetailsList';
 
 export default HomeStationDepartures = ({ route, navigation }) => {
 
-  console.log("direction: " + direction);
+
 
   const [filteredDepartures, setFilteredDepartures] = useState([]);
   const [isReady, setReady] = useState(false);
 
-  const {line, direction, stationObject} = route.params;
+  const {line, serviceID, direction, stationObject} = route.params;
 
   useEffect(() => {
     onScreenLoad();
@@ -21,11 +21,15 @@ export default HomeStationDepartures = ({ route, navigation }) => {
   //wenn screen geladen, wird eine gefilterte liste der haltestellen an der gewählten sation mit der konkreten line id 
   const onScreenLoad = async() => {
     //const directionID = line.vorwaerts[0].directionId
-    directionID = direction
-    const tempLineList = await getFilteredDepartureList(stationObject.stationObject, line.vorwaerts[0].line.id)
+    const directionID = direction
+    const tempLineList = await getFilteredDepartureList(stationObject.stationObject, serviceID)
     const departures = tempLineList.departures
     //hier werden nur die lines verwendet, die die richtige directionid ( 1 - vorwaerts oder 6 - rueckwaerts) haben
     const filteredList = departures.filter((dep) => dep.directionId == directionID);
+
+    filteredList.forEach(element => {
+      console.log(element);
+    });
 
     //als state setzen
     setFilteredDepartures(filteredList)
