@@ -39,6 +39,7 @@ export default FavoritesList = ({ navigation }) => {
   };
 
   const addButtonHandler = () => {
+    myContextManager.deleteRecents();
     navigation.navigate("FavAdd");
   }
 

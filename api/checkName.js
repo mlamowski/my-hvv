@@ -11,3 +11,12 @@ export const getCheckName = (INPUT) => {
 
 
 }
+
+export const getOneCheckName = (INPUT) => {
+
+    const BODY = {"version":53,"theName":{"name": INPUT ,"combinedName":""},"maxList":1,"allowTypeSwitch":false}
+
+    return sendRequest(BODY,PATH);
+
+
+}
