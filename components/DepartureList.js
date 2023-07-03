@@ -5,6 +5,10 @@ import Style from '../constants/Style';
 
 export default DepartureList = ({ stationsData, clickHandler }) => {
 
+    stationsData.forEach(element => {
+        console.log("id ist : " + element.vorwaerts[0].serviceId )
+    });
+
     const renderItem = ({ item }) => (
         <DepartureListItem
             myStation={item}
@@ -13,13 +17,12 @@ export default DepartureList = ({ stationsData, clickHandler }) => {
     );
 
 
-
     return (
         <View style={styles.container}>
             <FlatList
                 data={stationsData}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.serviceId}
+                keyExtractor={(item) => item.vorwaerts[0].serviceId}
                 ListHeaderComponent={()=><View style={{height: Style.standartMargin}}></View>}
             />
         </View>

@@ -6,12 +6,11 @@ export default LineDetailsListItem = ({ myLine, clickHandler }) => {
 
     //console.log("station item mystation: ", myStation);
 
-    console.log(myLine)
     return (
         <TouchableOpacity 
         style={styles.container} >
             <Text>
-                {myLine.timeOffset + " min"}
+                {myLine.timeOffset + " min,  serviceID: " + myLine.serviceId}
             </Text>
         </TouchableOpacity>
     );

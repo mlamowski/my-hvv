@@ -24,6 +24,9 @@ export default StationListItem = ({ myStation, clickHandler }) => {
             ]}
         >
             <Text style={styles.text}>{myStation.station}</Text>
+            <Text style={styles.text}>{myStation.id}</Text>
+
+
         </Pressable>
     );
 };

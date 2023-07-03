@@ -17,6 +17,7 @@ export default function HomeNavigator() {
         //hide the very thin line under the header 
         headerShadowVisible: false,
       }}
+      initialRouteName='HomeScreen'
     >
       <Stack.Screen 
         name="HomeScreen" 

@@ -4,6 +4,10 @@ import LineDetailsListItem from './LineDetailsListItem';
 
 export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
 
+    lineData.forEach(element => {
+        console.log("service id ist: " + element.serviceId )
+    });
+
     const renderItem = ({ item }) => (
         <LineDetailsListItem
             myLine={item}

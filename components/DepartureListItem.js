@@ -36,7 +36,7 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
 
                             {myStation.vorwaerts.map((element, index) => (
                                 <Text 
-                                    key={index} style={styles.text}>{element.timeOffset + " min "} 
+                                    key={index} style={styles.text}>{element.timeOffset + " min,  serviceID: " + element.serviceId} 
                                 </Text>
                             ))}
 
@@ -54,7 +54,7 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
 
                             {myStation.rueckwaerts.map((element, index) => (
                                 <Text 
-                                    key={index}  style={styles.text}>{element.timeOffset + " min "} 
+                                    key={index}  style={styles.text}>{element.timeOffset + " min,  serviceID: "  + element.serviceId} 
                                 </Text>
                             ))}
                         </Pressable>
