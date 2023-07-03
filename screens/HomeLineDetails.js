@@ -14,6 +14,9 @@ export default HomeLineDetails = ({ route, navigation }) => {
   //Empfange Params von Seite davor
   const {stationObject} = route.params;
 
+  console.log("Stationobject inside homelinedetail");
+  console.log(stationObject);
+
   //States
   const [isReady, setReady] = useState(false);
   const [departures, setDepartures] = useState([]);
