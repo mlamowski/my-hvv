@@ -87,8 +87,8 @@ export default HomeLineDetails = ({ route, navigation }) => {
   }, [filteredDepartures]);
 
   //clickhandler der zur StationDepartures führt. Die gewählte line wird übergeben und die station an der man sich befindet
-  const clickHandler = (item) => {
-    navigation.navigate("StationDepartures", { line: item, stationObject: stationObject})
+  const clickHandler = (item, direction) => {
+    navigation.navigate("StationDepartures", { line: item,  direction: direction, stationObject: stationObject})
   };
 
   return (
