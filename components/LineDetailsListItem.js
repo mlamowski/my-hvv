@@ -12,7 +12,7 @@ export default LineDetailsListItem = ({ myLine, clickHandler }) => {
         <TouchableOpacity 
         style={styles.container} >
             <Text>
-                {myLine.timeOffset + " min"}
+                {myLine.timeOffset + " min,  serviceID: " + myLine.serviceId + (Math.floor(Math.random() * 1000) + 1)}
             </Text>
         </TouchableOpacity>
     );

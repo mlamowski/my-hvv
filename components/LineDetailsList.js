@@ -4,6 +4,11 @@ import LineDetailsListItem from './LineDetailsListItem';
 
 export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
 
+    lineData.forEach(element => {
+        console.log("service id ist: " + element.line.id ) 
+        console.log(element);
+    });
+
     const renderItem = ({ item }) => (
         <LineDetailsListItem
             myLine={item}
@@ -19,7 +24,7 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
             <FlatList
                 data={lineData}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.serviceId}
+                keyExtractor={(item) => item.serviceId + item.timeOffset}
             />
         </View>
 
