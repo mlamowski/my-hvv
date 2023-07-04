@@ -17,7 +17,7 @@ export default StationList = ({ stationsData, clickHandler, style }) => {
             style={styles.list}
             data={stationsData}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id  + (Math.floor(Math.random() * 1000) + 1)}
         />
     );
 };
