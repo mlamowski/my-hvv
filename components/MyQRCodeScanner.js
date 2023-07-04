@@ -37,18 +37,14 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
   //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
     if(stationsData.results) {
-      console.log("useefect");
       setStations(new Station(stationsData.results[0]))
     }
   }, [stationsData])
 
   //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
-    console.log("stations: 0 " + stations.length);
-    console.log(stations);
     if (stations.id != undefined) {
       setScanned(false);
-      console.log("execurte clickhandler" + stations);
       clickHandlerCloseModal();
       clickHandlerToNav(stations)
 
@@ -61,7 +57,9 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
     <Modal visible={visible} animationType='slide'>
         {hasPermission === null &&  <Text> Requesting for camera permission</Text>}
         {hasPermission === false &&  <Text> No access to camera </Text>}
-        {hasPermission === true && 
+        {hasPermission === true && scanned === false &&
+
+        
         <BarCodeScanner
             onBarCodeScanned={handleBarCodeScanned}
             style={StyleSheet.absoluteFillObject}
