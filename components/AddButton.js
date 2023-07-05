@@ -4,7 +4,7 @@ import Colors from "../constants/Colors"
 import { View, StyleSheet } from "react-native";
 import Style from "../constants/Style";
 
-export default ({ clickHandler }) => {
+export default ({ clickHandler, text }) => {
     return (
         <View style={styles.addButton}>
             <Button
@@ -16,7 +16,7 @@ export default ({ clickHandler }) => {
                 loadingProps={{ animating: true }}
                 loadingStyle={{}}
                 onPress={clickHandler}
-                title="+"
+                title={text}
                 titleProps={{}}
                 titleStyle={{ marginHorizontal: 5 }}
             />
@@ -26,6 +26,6 @@ export default ({ clickHandler }) => {
 
 const styles = StyleSheet.create({
     addButton: {
-      margin: Style.standartPadding,
+      //margin: Style.standartPadding,
     }
   });

@@ -3,7 +3,7 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import StationListItem from './StationListItem';
 import Style from '../constants/Style';
 
-export default StationList = ({ stationsData, clickHandler, style }) => {
+export default StationList = ({ stationsData, clickHandler }) => {
 
     const renderItem = ({ item }) => (
         <StationListItem

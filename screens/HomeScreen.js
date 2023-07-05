@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
 import ContextManager from '../data/contextManager';
 import { storeData } from '../data/AppStorage';
 import ButtonQRCodeScanner from '../components/ButtonQRCodeScanner';
 import MyQRCodeScanner from '../components/MyQRCodeScanner';
+import Style from '../constants/Style';
 
 import HomeTopTabNavigator from '../navigation/HomeTopTabNavigator';
 
@@ -41,10 +42,49 @@ export default HomeScreen = ({ navigation }) => {
 
   return (
     <Fragment>
-        <MySearchBar navigation={navigation} clickHandler={clickHandler}/>
-        <ButtonQRCodeScanner clickHandler={openQRCodeScannerClickHandler}/>
-        <MyQRCodeScanner visible={QRScannerIsVisible} clickHandlerCloseModal={closeQRCodeScannerClickHandler} clickHandlerToNav={clickHandler}/>
-        <HomeTopTabNavigator/>
+      
+      <View style={styles.header}>
+        <View style={styles.topBar}>
+          <View style={styles.searchBar}>
+            <MySearchBar navigation={navigation} clickHandler={clickHandler}/>
+          </View>
+          <View>
+            <ButtonQRCodeScanner clickHandler={openQRCodeScannerClickHandler}/>
+          </View>
+        </View>
+      </View>
+
+      
+      <MyQRCodeScanner visible={QRScannerIsVisible} clickHandlerCloseModal={closeQRCodeScannerClickHandler} clickHandlerToNav={clickHandler}/>
+      
+      <HomeTopTabNavigator/>
+
     </Fragment>
   )
 }
+
+const styles = StyleSheet.create({
+  header: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white"
+  },
+  topBar: {
+    flexDirection: "row",
+    backgroundColor: "white",
+    width: "100%",
+    maxWidth: 600,
+    //paddingHorizontal: Style.standartMargin,
+  },
+  searchBar: {
+    flex: 1,
+  },
+  qrButton: {
+
+  },
+  modal: {
+    alignItems: "center",
+    justifyContent: "center",
+  }
+});

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Text, Pressable, Modal, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { getOneCheckName } from '../api/checkName';
+import AddButton from './AddButton';
+import Style from '../constants/Style';
 
 import Station from '../models/Station';
 
@@ -58,25 +60,29 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
 
   
   return (
-    <Modal visible={visible} animationType='slide'>
-        {hasPermission === null &&  <Text> Requesting for camera permission</Text>}
-        {hasPermission === false &&  <Text> No access to camera </Text>}
-        {hasPermission === true && 
-        <BarCodeScanner
-            onBarCodeScanned={handleBarCodeScanned}
-            style={StyleSheet.absoluteFillObject}
-        >
-            <Pressable   
-              onPress={() => {clickHandler(), setScanned(false)}}
-              unstable_pressDelay={50}
-              style={ ({ pressed }) => [
-              styles.container,
-              { opacity: pressed ? 0.5 : 1 },
-              ]}
-            >
-              <Text style={styles.text}>Close</Text>
-            </Pressable>
-        </BarCodeScanner> }
+    <Modal visible={visible} animationType='slide' transparent={true}>
+        {hasPermission === null &&  <Text>Requesting for camera permission</Text>}
+        {hasPermission === false &&  <Text>No access to camera</Text>}
+        {hasPermission === true &&
+
+          <View style={styles.container}>
+            <View style={styles.scanner}>
+              <BarCodeScanner
+                  onBarCodeScanned={handleBarCodeScanned}
+                  style={StyleSheet.absoluteFillObject}
+              >
+                <View style={styles.button}>
+
+                  <AddButton clickHandler={() => {clickHandlerCloseModal(), setScanned(false)}} text={"x"}/>
+
+                </View>
+                  
+              </BarCodeScanner> 
+              
+            </View>
+          </View>
+        
+        }
     </Modal>
 
   )
@@ -85,9 +91,21 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
 const styles = StyleSheet.create({
   container: {
     
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",  
 
+  },
+  scanner: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "white",
+  },
+  button:{
+    marginTop: 20,
+    marginRight: 7,
+    alignSelf: "flex-end",
   }
 })
 

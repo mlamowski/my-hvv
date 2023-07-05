@@ -6,6 +6,7 @@ import AddButton from '../components/AddButton';
 import Colors from '../constants/Colors';
 import PageTitle from '../components/PageTitle';
 import { storeData } from '../data/AppStorage';
+import Style from '../constants/Style';
 
 
 export default FavoritesList = ({ navigation }) => {
@@ -39,7 +40,7 @@ export default FavoritesList = ({ navigation }) => {
   };
 
   const addButtonHandler = () => {
-    myContextManager.deleteRecents();
+    //myContextManager.deleteRecents();
     navigation.navigate("FavAdd");
   }
 
@@ -48,9 +49,10 @@ export default FavoritesList = ({ navigation }) => {
 
       <PageTitle smallTitle={"Deine"} bigTitle={"Favoriten"}/>
 
-      <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler}/>
-
-      <AddButton clickHandler={addButtonHandler}/>
+      <StationList stationsData={appData.favorites} clickHandler={clickHandler}/>
+      <View style={styles.addButton}>
+        <AddButton clickHandler={addButtonHandler} text={"+"}/>
+      </View>
 
     </View>
   )
@@ -59,8 +61,10 @@ export default FavoritesList = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
     backgroundColor: Colors.lightBackground,  
     alignItems: "center",
+  }, 
+  addButton: {
+    margin: Style.standartMargin,
   }
 });

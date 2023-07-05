@@ -4,5 +4,6 @@ export default {
     lightBackground: '#E6F0EC',  //helles grün
     textDark: '#000000',
     textLight: '#FFFFFF',
-    gray: "#B5B5B5"
+    darkGray: "#7d7d7d",
+    lightGray: "#DCDCE1",
   };

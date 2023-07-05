@@ -9,13 +9,8 @@ import {  } from 'react';
 // and a clickhandler for clicking in that station
 export default StationListItem = ({ myStation, clickHandler }) => {
 
-    //console.log("station item mystation: ", myStation);
-    const [opacityPressed, setOpacityPressed] = useState(0);
-
     return (
         <Pressable 
-            //style={styles.container} 
-            
             onPress={() => clickHandler(myStation)}
             unstable_pressDelay={50}
             style={ ({ pressed }) => [
@@ -26,6 +21,7 @@ export default StationListItem = ({ myStation, clickHandler }) => {
             <Text style={styles.text}>{myStation.station}</Text>
         </Pressable>
     );
+
 };
 
 const styles = StyleSheet.create({

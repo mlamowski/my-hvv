@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Pressable, View } from 'react-native';
 import Colors from "../constants/Colors"
 import Style from '../constants/Style';
 
@@ -9,25 +9,39 @@ export default LineDetailsListItem = ({ myLine, clickHandler }) => {
 
     console.log(myLine)
     return (
-        <TouchableOpacity 
-        style={styles.container} >
-            <Text>
-                {myLine.timeOffset + " min,  serviceID: " + myLine.serviceId + (Math.floor(Math.random() * 1000) + 1)}
-            </Text>
-        </TouchableOpacity>
-    );
-    };
 
-    const styles = StyleSheet.create({
+        <View style={styles.container}>
+            <Text style={styles.text}>{myLine.timeOffset + " min"}</Text>
+        </View>
+        
+    );
+};
+
+const styles = StyleSheet.create({
     container: {
-        padding: 10,
-        margin: 10,
-        backgroundColor: Colors.accent,
-        borderRadius: 10,
+        //padding: Style.standartPadding,
+        marginBottom: Style.standartMargin,
+        
+        
+        
     },
     text: {
         fontSize: Style.fontSizeText,
+        fontFamily: Style.fontFamilyRegular,
         color: Colors.textLight
 
     },
 });
+
+/*<Pressable 
+            
+            //onPress={() => clickHandler(myStation)}
+            unstable_pressDelay={50}
+            style={ ({ pressed }) => [
+              styles.container,
+              { opacity: pressed ? 0.5 : 1 },
+            ]}
+        >
+            <Text style={styles.text}>{myLine.timeOffset + " min,"}</Text>
+        </Pressable>
+*/

@@ -62,14 +62,14 @@ export default MySearchBar = ({ clickHandler }) => {
 const styles = StyleSheet.create({
   container: {
     
-    alignItems: "center",
+    //alignItems: "center",
     backgroundColor: "white",  
 
   }, 
   searchbar: {
-    width: "100%",
-    maxWidth: 600,
+    //width: "100%",
+    //maxWidth: 600,
     backgroundColor: "white",
-    paddingHorizontal: 5,
+    //paddingHorizontal: 5,
   }
 })

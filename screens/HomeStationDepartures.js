@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, StyleSheet } from 'react-native';
 import { getFilteredDepartureList } from '../api/departureList';
 import { getCheckName } from '../api/checkName';
 import LineDetailsList from '../components/LineDetailsList';
+import PageTitle from '../components/PageTitle';
+import Colors from '../constants/Colors';
+import Style from '../constants/Style';
 
 
 export default HomeStationDepartures = ({ route, navigation }) => {
@@ -49,12 +52,30 @@ export default HomeStationDepartures = ({ route, navigation }) => {
 
   
   return (
-    <View>
-      {isReady ? (
-        <LineDetailsList lineName={line.name} lineData={filteredDepartures} clickHandler={clickHandler}/>
-      ) : (
-        null
-      )}
+
+    <View style={styles.container}>
+
+      <PageTitle smallTitle={"Abfahrten"} bigTitle={line.name}/>
+
+      
+        {isReady ? (
+          <View style={styles.container}>
+            <LineDetailsList lineName={line.name} lineData={filteredDepartures} clickHandler={clickHandler}/>
+          </View>
+        ) : (
+          null
+        )}
+      
+
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: Colors.lightBackground,  
+    alignItems: "center",
+  }
+});

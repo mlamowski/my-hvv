@@ -43,6 +43,7 @@ export default function FavoritesNavigator() {
         component={FavList} 
         options={{
           title: "Favoriten",
+          //headerShown: false,
         }}
       />
       <Stack.Screen 

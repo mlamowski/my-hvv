@@ -4,6 +4,8 @@ import { getDepartureList } from '../api/departureList';
 import DepartureList from '../components/DepartureList';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
+import PageTitle from '../components/PageTitle';
+
 
 export default HomeLineDetails = ({ route, navigation }) => {
 
@@ -100,6 +102,9 @@ export default HomeLineDetails = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+
+      <PageTitle smallTitle={"Abfahrten von"} bigTitle={stationObject.station}/>
+
       {isReady ? (
         <View style={styles.list}>
           <DepartureList stationsData={filteredDepartures} clickHandler={clickHandler}/>
