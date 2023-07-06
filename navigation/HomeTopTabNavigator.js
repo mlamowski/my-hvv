@@ -18,7 +18,7 @@ export default function HomeTopTabNavigator() {
         //tabBarLabel: "test"
         tabBarIndicatorContainerStyle: {backgroundColor: Colors.lightBackground},
         tabBarActiveTintColor: Colors.textDark,
-        tabBarIndicatorStyle: {backgroundColor: Colors.gray}
+        tabBarIndicatorStyle: {backgroundColor: Colors.lightGray}
       }}
     >
       <TopTab.Screen 

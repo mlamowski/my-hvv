@@ -57,7 +57,7 @@ export default HomeScreen = ({ navigation }) => {
 
   return (
     <Fragment >
-      <View style={[{ minHeight: Math.round(windowHeight), backgroundColor: "white" }]}>
+      <View style={[{ height: "100%", backgroundColor: "white" }]}>
         <View style={styles.header}>
           <View style={styles.topBar}>
             <View style={styles.searchBar}>

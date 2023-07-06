@@ -50,7 +50,7 @@ export default FavoritesAdd = ({ navigation }) => {
     <View style={{backgroundColor: Colors.lightBackground, flex: 1}}>
       
       <View style={styles.header}>
-        <MySearchBar clickHandler={clickHandler} qrButtonClickHandler={openQRCodeScannerClickHandler}/>
+        <MySearchBar clickHandler={clickHandler} qrButtonClickHandler={openQRCodeScannerClickHandler} hideTopTabNavigator={() => null} showTopTabNavigator={() => null}/>
       </View>
       <MyQRCodeScanner visible={QRScannerIsVisible} clickHandlerCloseModal={closeQRCodeScannerClickHandler} clickHandlerToNav={clickHandler}/>
 
