@@ -26,6 +26,7 @@ export default DepartureList = ({ stationsData, clickHandler }) => {
                 renderItem={renderItem}
                 keyExtractor={(item) => item.name}
                 ListHeaderComponent={()=><View style={{height: Style.standartMargin}}></View>}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     );

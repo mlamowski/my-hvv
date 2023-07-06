@@ -19,6 +19,7 @@ export default StationList = ({ stationsData, clickHandler }) => {
             renderItem={renderItem}
             keyExtractor={(item) => item.id  + (Math.floor(Math.random() * 1000) + 1)}
             ListHeaderComponent={()=><View style={{height: Style.standartMargin}}></View>}
+            showsVerticalScrollIndicator={false}
         />
     );
 };
@@ -29,4 +30,4 @@ const styles = StyleSheet.create({
         width: "100%",
         maxWidth: 500,
     }
-  });
+});

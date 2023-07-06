@@ -46,10 +46,6 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
         // console.log(element.line);
     });
 
-    
-
-
-
     return (
         <View //einzelnes list item
             style={styles.container} 
@@ -64,43 +60,53 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
             <View style={styles.scrollview}>
                 <ScrollView
                     horizontal
+                    showsHorizontalScrollIndicator={false}
                     //pagingEnabled
                 >
 
-                    <View>
-                        <Pressable 
-                            onPress={() => clickHandler(myStation, 1)}
-                            style={styles.vorwaertsBox}
-                        >
-                            <Text style={[styles.text, styles.directionText]}>
-                                    Vorwärts: 
-                            </Text>
-
-                            {vorwaerts.map((element, index) => (
-                                <Text 
-                                    key={index} style={styles.text}>{element} 
+                    {vorwaerts.length > 0 ? (
+                        <View>
+                            <Pressable 
+                                onPress={() => clickHandler(myStation, 1)}
+                                style={styles.vorwaertsBox}
+                            >
+                                <Text style={[styles.text, styles.directionText]}>
+                                        Vorwärts: 
                                 </Text>
-                            ))}
 
-                        </Pressable>
-                    </View>
+                                {vorwaerts.map((element, index) => (
+                                    <Text 
+                                        key={index} style={styles.text}>{element} 
+                                    </Text>
+                                ))}
 
-                    <View >
-                        <Pressable
-                            onPress={() => clickHandler(myStation, 6)}
-                            style={styles.rueckwaertsBox}
-                        >
-                            <Text style={[styles.text, styles.directionText]}>
-                                Rückwärts: 
-                            </Text>
+                            </Pressable>
+                        </View>
+                    ) : (
+                        null
+                    )}
 
-                            {rueckwaerts.map((element, index) => (
-                                <Text 
-                                    key={index}  style={styles.text}>{element}
+
+                    {rueckwaerts.length > 0 ? (
+                        <View >
+                            <Pressable
+                                onPress={() => clickHandler(myStation, 6)}
+                                style={styles.rueckwaertsBox}
+                            >
+                                <Text style={[styles.text, styles.directionText]}>
+                                    Rückwärts: 
                                 </Text>
-                            ))}
-                        </Pressable>
-                    </View>
+
+                                {rueckwaerts.map((element, index) => (
+                                    <Text 
+                                        key={index}  style={styles.text}>{element}
+                                    </Text>
+                                ))}
+                            </Pressable>
+                        </View>
+                    ) : (
+                        null
+                    )}
 
                 </ScrollView>
             </View>
