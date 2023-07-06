@@ -108,6 +108,8 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
+    width: "100%",
+    alignItems: "center"
   }, 
   searchbar: {
     backgroundColor: "white",
