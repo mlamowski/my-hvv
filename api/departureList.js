@@ -13,7 +13,7 @@ export const getDepartureList = (STATION) => {
             "date": "heute", "time": "jetzt" 
         }, 
         "maxList": 40,  
-        "maxTimeOffset": 120, 
+        "maxTimeOffset": 60, 
         "useRealtime":true 
     }
 
