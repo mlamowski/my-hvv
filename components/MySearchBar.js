@@ -80,6 +80,12 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler, showTopTabNa
     setStationsDataFromAPI(await getCheckName(search))
   };
 
+  const myClickHandler = (stationObject) => {
+    //clear searchbar 
+    this.search.clear();
+    clickHandler(stationObject);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -89,13 +95,14 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler, showTopTabNa
           onChangeText={updateSearch}
           value={search}
           platform={"ios"}
+          ref={search => this.search = search}
         />
 
         <ButtonQRCodeScanner clickHandler={qrButtonClickHandler}/>
       </View>
 
       {isReady ? (
-        <StationList stationsData={stations} clickHandler={clickHandler} longClickHandler={clickHandler}/>
+        <StationList stationsData={stations} clickHandler={myClickHandler} longClickHandler={clickHandler}/>
       ) : (
         null
       )}
