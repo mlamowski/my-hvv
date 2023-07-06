@@ -15,6 +15,8 @@ export default HomeRecentList = ({ navigation }) => {
 
   //clickhandler for clicking on a station 
   const clickHandler = (stationObject) => {
+    //station wieder nach oben in die recents enfügen 
+    myContextManager.addRecent(stationObject);
     navigation.navigate("LineDetails", { stationObject: stationObject })
   };
 
