@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import {ActivityIndicator, Text, View, Button, StyleSheet } from 'react-native';
+import {ActivityIndicator, Text, View, Button, StyleSheet, Modal } from 'react-native';
 import { SearchBar } from '@rneui/themed';
 import { getInit } from '../api/init'
 import { getCheckName } from '../api/checkName';
@@ -18,6 +18,7 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
   const myContextManager = new ContextManager();
 
   //states
+  const [modalIsVisible, setModalVisible] = useState(false);
   const [isReady, setReady] = useState(false);
   const [stationsDataFromAPI, setStationsDataFromAPI] = useState([]);
   const [search, setSearch] = useState("");
@@ -54,8 +55,15 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
 
   //Wird ausgeführt, wenn Searchbar upgedatet wird
   const updateSearch = async (search) => {
+    
+    if(search.length > 0) {
+      setModalVisible(true)
+    } else {
+      setModalVisible(false)
 
-    console.log("updatesearch");
+    }
+
+    //console.log("updatesearch");
     //sucheingabe als state setzen
     setSearch(search);
 
@@ -82,7 +90,28 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topBar}>
+        {modalIsVisible ? (
+          <Modal animationType='slide'>
+
+          <View style={styles.topBar}>
+            <SearchBar
+              containerStyle={styles.searchbar}
+              placeholder="Type Here..."
+              onChangeText={updateSearch}
+              value={search}
+              platform={"ios"}
+            />
+  
+            <ButtonQRCodeScanner clickHandler={qrButtonClickHandler}/>
+          </View>
+          {isReady === true &&
+  
+  
+                <StationList stationsData={stations} clickHandler={clickHandler}/>
+              }
+        </Modal> 
+      ) : (
+        <View style={styles.topBar}>
         <SearchBar
           containerStyle={styles.searchbar}
           placeholder="Type Here..."
@@ -93,14 +122,10 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
 
         <ButtonQRCodeScanner clickHandler={qrButtonClickHandler}/>
       </View>
-
-      {isReady ? (
-        <StationList stationsData={stations} clickHandler={clickHandler}/>
-      ) : (
-        null
       )}
-      
 
+              
+     
     </View>
   )
 }

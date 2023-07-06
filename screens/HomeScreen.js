@@ -24,8 +24,8 @@ export default HomeScreen = ({ navigation }) => {
   }, [appData])
   
   const clickHandler = (stationObject) => {
-    console.log("station object");
-    console.log(stationObject);
+    //console.log("station object");
+    //console.log(stationObject);
     navigation.navigate("LineDetails", { stationObject: stationObject })
     //add station the recents 
     myContextManager.addRecent(stationObject)
