@@ -46,11 +46,11 @@ export default HomeScreen = ({ navigation }) => {
       <View style={styles.header}>
         <View style={styles.topBar}>
           <View style={styles.searchBar}>
-            <MySearchBar navigation={navigation} clickHandler={clickHandler}/>
+            <MySearchBar navigation={navigation} clickHandler={clickHandler} qrButtonClickHandler={openQRCodeScannerClickHandler}/>
           </View>
-          <View>
+          {/* <View>
             <ButtonQRCodeScanner clickHandler={openQRCodeScannerClickHandler}/>
-          </View>
+          </View> */}
         </View>
       </View>
 
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
 
   },
   modal: {
-    alignItems: "center",
-    justifyContent: "center",
+    
   }
 });

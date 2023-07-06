@@ -10,8 +10,9 @@ import StationList from '../components/StationList';
 import { Platform } from 'react-native';
 import Style from '../constants/Style';
 import Colors from '../constants/Colors';
+import ButtonQRCodeScanner from './ButtonQRCodeScanner';
 
-export default MySearchBar = ({ clickHandler }) => {
+export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
 
   //useEffect for saving 
   const myContextManager = new ContextManager();
@@ -26,7 +27,11 @@ export default MySearchBar = ({ clickHandler }) => {
 
   //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
+
+    console.log("useeffect stationsDataFromAPI");
     if (stationsDataFromAPI.results && search.length > 0) {
+      console.log("setready true");
+      console.log(stations);
       setReady(true);
       //erhaltende Daten von api als station object erstellen und in temp array speichern
       const stationsAsStationObjects = (stationsDataFromAPI.results).map((item, index) => new Station(item))
@@ -43,11 +48,14 @@ export default MySearchBar = ({ clickHandler }) => {
 
     } else {
       setReady(false)
+      console.log("setready false");
     }
   }, [stationsDataFromAPI])
 
   //Wird ausgeführt, wenn Searchbar upgedatet wird
   const updateSearch = async (search) => {
+
+    console.log("updatesearch");
     //sucheingabe als state setzen
     setSearch(search);
 
@@ -68,17 +76,23 @@ export default MySearchBar = ({ clickHandler }) => {
     setStationsDataFromAPI(await getCheckName(search))
   };
 
+  testClickHandler = () => {
+    console.log("test");
+  }
+
   return (
     <View style={styles.container}>
-      
-      <SearchBar
-        containerStyle={styles.searchbar}
-        placeholder="Type Here..."
-        onChangeText={updateSearch}
-        value={search}
-        platform={"ios"}
-      />
-      
+      <View style={styles.topBar}>
+        <SearchBar
+          containerStyle={styles.searchbar}
+          placeholder="Type Here..."
+          onChangeText={updateSearch}
+          value={search}
+          platform={"ios"}
+        />
+
+        <ButtonQRCodeScanner clickHandler={qrButtonClickHandler}/>
+      </View>
 
       {isReady ? (
         <StationList stationsData={stations} clickHandler={clickHandler}/>
@@ -93,15 +107,16 @@ export default MySearchBar = ({ clickHandler }) => {
 
 const styles = StyleSheet.create({
   container: {
-    
-    //alignItems: "center",
-    backgroundColor: "white",  
-
+    backgroundColor: "white",
   }, 
   searchbar: {
-    //width: "100%",
-    //maxWidth: 600,
     backgroundColor: "white",
-    //paddingHorizontal: 5,
-  }
+    flex: 1,
+  },
+  topBar: {
+    flexDirection: "row",
+    backgroundColor: "white",
+    width: "100%",
+    maxWidth: 600,
+  },
 })

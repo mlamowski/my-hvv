@@ -25,11 +25,8 @@ export default StationList = ({ stationsData, clickHandler }) => {
 
 const styles = StyleSheet.create({
     list: {
-        flex: 1,
-        //padding: Style.standartMargin,
         paddingHorizontal: Style.standartMargin,
         width: "100%",
-        height: "100%",
         maxWidth: 500,
     }
   });
