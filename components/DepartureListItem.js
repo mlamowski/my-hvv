@@ -8,9 +8,12 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
     // console.log("mystation");
     // console.log(myStation);
 
+    //sort arrays by wann die kommen
+    myStation.rueckwaerts.sort((a, b) => (a.timeOffset + (a.delay / 60)) - (b.timeOffset + (a.delay / 60)));
+    myStation.vorwaerts.sort((a, b) => (a.timeOffset + (a.delay / 60)) - (b.timeOffset + (a.delay / 60)));
+    
 
     //make new array with calculated departure times 
-
     vorwaerts = [];
     rueckwaerts = [];
 
@@ -20,9 +23,9 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
 
         
         if (element.delay != undefined && element.delay > 0) {
-            rueckwaerts.push(element.timeOffset + (element.delay/60) + " min | Richtung " + element.line.direction)
+            rueckwaerts.push(element.timeOffset + (element.delay/60) + " min | Bis " + element.line.direction)
         } else {
-            rueckwaerts.push(element.timeOffset + " min | Richtung " + element.line.direction)
+            rueckwaerts.push(element.timeOffset + " min | Bis " + element.line.direction)
         }
 
         //console.log(rueckwaerts);
@@ -36,15 +39,18 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
         //console.log(element.delay != undefined );
         
         if (element.delay != undefined && element.delay > 0) {
-            vorwaerts.push(element.timeOffset + (element.delay/60) + " min | Richtung " + element.line.direction)
+            vorwaerts.push(element.timeOffset + (element.delay/60) + " min | Bis " + element.line.direction)
         } else {
-            vorwaerts.push(element.timeOffset + " min | Richtung " + element.line.direction)
+            vorwaerts.push(element.timeOffset + " min | Bis " + element.line.direction)
         }
 
         //console.log(vorwaerts);
         // console.log("line");
         // console.log(element.line);
     });
+
+
+
 
     return (
         <View //einzelnes list item

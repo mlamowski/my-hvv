@@ -40,6 +40,7 @@ export default HomeStationDepartures = ({ route, navigation }) => {
 
     //als state setzen
     setFilteredDepartures(filteredList)
+    //console.log("setDepartures");
 
   }
 
@@ -47,6 +48,8 @@ export default HomeStationDepartures = ({ route, navigation }) => {
   useEffect(() => {
     if (filteredDepartures) {  
       setReady(true);
+      // console.log("useeffect");
+      //console.log(filteredDepartures);
     }
   }, [filteredDepartures]);
 

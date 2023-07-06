@@ -12,8 +12,8 @@ export const getDepartureList = (STATION) => {
         "time": { 
             "date": "heute", "time": "jetzt" 
         }, 
-        "maxList": 30,  
-        "maxTimeOffset": 60, 
+        "maxList": 40,  
+        "maxTimeOffset": 120, 
         "useRealtime":true 
     }
 
@@ -34,11 +34,11 @@ export const getFilteredDepartureList = (STATION, SERVICE_ID) => {
         "time": { 
             "date": "heute", "time": "jetzt" 
         }, 
-        "maxList": 10, 
+        "maxList": 20, 
         "filter": {
             "serviceID": SERVICE_ID,
         },
-        "maxTimeOffset": 60, 
+        "maxTimeOffset": 1000, 
         "useRealtime":true 
     }
 

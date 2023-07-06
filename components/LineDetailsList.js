@@ -6,8 +6,13 @@ import Colors from '../constants/Colors';
 
 export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
 
+    //sort departures by time
+    lineData.sort((a, b) => (a.timeOffset + (a.delay / 60)) - (b.timeOffset + (a.delay / 60)));
+
+    // console.log("linedata");
+    // console.log(lineData);
     lineData.forEach(element => {
-        //console.log("service id ist: " + element.line.id ) 
+        // console.log("service id ist: " + element.serviceId) 
         //onsole.log(element);
     });
 
@@ -28,7 +33,14 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
                     style={styles.list}
                     data={lineData}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.serviceId + (Math.floor(Math.random() * 1000000000) + 1)}
+                    keyExtractor={
+                        (item) => 
+                        item.serviceId == undefined ? (
+                            (Math.floor(Math.random() * 1000000000) + 1)
+                          ) : (
+                            item.serviceId + (Math.floor(Math.random() * 1000000000) + 1)
+                        ) 
+                    }
                 />
 
             </View>

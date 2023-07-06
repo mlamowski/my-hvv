@@ -29,7 +29,7 @@ export default LineDetailsListItem = ({ myLine, clickHandler }) => {
     
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>{departure + " min - Endhaltestelle:\n" + myLine.line.direction}</Text>
+            <Text style={styles.text}>{departure + " min - Bis " + myLine.line.direction}</Text>
         </View>
     );
 };
