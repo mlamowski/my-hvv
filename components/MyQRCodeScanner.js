@@ -4,7 +4,6 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { getOneCheckName } from '../api/checkName';
 import AddButton from './AddButton';
 import Style from '../constants/Style';
-
 import Station from '../models/Station';
 
 
@@ -14,7 +13,6 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
   const [stations, setStations] = useState({});
   const [stationsData, setStationsData] = useState([]);
   const [scanned, setScanned] = useState(false);
-
 
   useEffect(() => {
     getBarCodeScannerPermissions();
@@ -28,13 +26,14 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
 
   //Wird ausgeführt, wenn QR-Code gescannt wurde 
   const handleBarCodeScanned = async ({ type, data }) => {
-    setScanned(true);
     //Von api stationsobjekt bekommen
-    setStationsData(await getOneCheckName(data))
-    //alert(`Bar code with type ${type} and data ${data} has been scanned!` );
+    if (/^[a-zA-Z]+$/.test(data) && scanned === false) {
+      setScanned(true);
+      setStationsData(await getOneCheckName(data))
+   } else {
+    // Alex
+   }
   };
-
-
 
   //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
@@ -49,7 +48,6 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
       setScanned(false);
       clickHandlerCloseModal();
       clickHandlerToNav(stations)
-
     }
   }, [stations])
 
@@ -59,7 +57,7 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
     <Modal visible={visible} animationType='slide' transparent={true}>
         {hasPermission === null &&  <Text>Requesting for camera permission</Text>}
         {hasPermission === false &&  <Text>No access to camera</Text>}
-        {hasPermission === true && scanned === false &&
+        {hasPermission === true &&
 
           <View style={styles.container}>
             <View style={styles.scanner}>
