@@ -3,12 +3,13 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import StationListItem from './StationListItem';
 import Style from '../constants/Style';
 
-export default StationList = ({ stationsData, clickHandler }) => {
+export default StationList = ({ stationsData, clickHandler, longClickHandler }) => {
 
     const renderItem = ({ item }) => (
         <StationListItem
         myStation={item}
         clickHandler={clickHandler}
+        longClickHandler={longClickHandler}
         />
     );
 

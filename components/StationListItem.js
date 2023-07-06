@@ -7,11 +7,12 @@ import {  } from 'react';
 
 // gets a station as a station object 
 // and a clickhandler for clicking in that station
-export default StationListItem = ({ myStation, clickHandler }) => {
+export default StationListItem = ({ myStation, clickHandler, longClickHandler }) => {
 
     return (
         <Pressable 
             onPress={() => clickHandler(myStation)}
+            onLongPress={() => longClickHandler(myStation)}
             unstable_pressDelay={50}
             style={ ({ pressed }) => [
               styles.container,

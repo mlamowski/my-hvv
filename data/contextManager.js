@@ -74,12 +74,16 @@ class ContextManager {
             recents: appData.recents,
         }));
 
-        //console.log("Favs len: " + appData.favorites.length);
-        for (const fav in appData.favorites) {
-          //  console.log(fav);
-        }
 
         //console.log(storeData(appData));
+    }
+
+    deleteRecent = (stationToRemove) => {
+        setAppData(appData => ({
+            favorites: appData.favorites,
+            recents: appData.recents.filter(recents => recents.id !== stationToRemove.id),
+        }));
+
     }
 
     //delete all recents

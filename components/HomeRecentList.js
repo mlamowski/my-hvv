@@ -20,10 +20,14 @@ export default HomeRecentList = ({ navigation }) => {
     navigation.navigate("LineDetails", { stationObject: stationObject })
   };
 
+  const longClickHandler = (stationObject) => {
+    myContextManager.deleteRecent(stationObject);
+  };
+
   return (
     <View style={styles.container}>
       {/* recent list is reversed so the latest entry is at the top */}
-      <StationList style={styles.list} stationsData={appData.recents} clickHandler={clickHandler}/>
+      <StationList style={styles.list} stationsData={appData.recents} clickHandler={clickHandler} longClickHandler={longClickHandler}/>
     </View>
   )
 }
