@@ -5,7 +5,7 @@ import ContextManager from '../data/contextManager';
 import MySearchBar from '../components/MySearchBar';
 import Colors from '../constants/Colors';
 import { storeData } from '../data/AppStorage';
-
+import Toast from 'react-native-toast-message';
 
 
 export default FavoritesAdd = ({ navigation }) => {
@@ -18,12 +18,23 @@ export default FavoritesAdd = ({ navigation }) => {
     storeData(myContextManager.appData);
   }, [myContextManager.getAppData])
 
+  //show fav addded toast
+  const showToast = (stationName) => {
+    Toast.show({
+      type: 'info',
+      text1: 'Favorit hinzugefügt: ' + stationName,
+      //text2: 'This is some something 👋'
+      visibilityTime: 1500,
+    });
+  }
 
   //onlickhandler for clicking on a searched station - gets a station object 
   const clickHandler = (stationObject) => {
     //add station to favs 
-    console.log("add station");
-    myContextManager.addFavorite(stationObject)
+    //console.log("add station");
+    showToast(stationObject.station);
+    myContextManager.addFavorite(stationObject);
+
     
   };
 

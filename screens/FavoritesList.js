@@ -9,6 +9,7 @@ import { storeData } from '../data/AppStorage';
 import Style from '../constants/Style';
 
 
+
 export default FavoritesList = ({ navigation }) => {
 
   //get global context
@@ -26,7 +27,7 @@ export default FavoritesList = ({ navigation }) => {
     Alert.alert('Deletion', 'Delete: ' + stationObject.station + "?", [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
+        //onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
       {

@@ -5,25 +5,29 @@ import Style from '../constants/Style';
 
 export default DepartureListItem = ({ myStation, clickHandler }) => {
 
-    //console.log("mystation");
-    //console.log(myStation);
+    // console.log("mystation");
+    // console.log(myStation);
 
 
     //make new array with calculated departure times 
+
     vorwaerts = [];
     rueckwaerts = [];
 
     myStation.rueckwaerts.forEach(element => {
         //console.log(element.delay);
         //console.log(element.delay != undefined);
+
         
         if (element.delay != undefined && element.delay > 0) {
-            rueckwaerts.push(element.timeOffset + " + " + (element.delay/60))
+            rueckwaerts.push(element.timeOffset + (element.delay/60) + " min | Richtung " + element.line.direction)
         } else {
-            rueckwaerts.push(element.timeOffset)
+            rueckwaerts.push(element.timeOffset + " min | Richtung " + element.line.direction)
         }
 
         //console.log(rueckwaerts);
+        // console.log("line");
+        // console.log(element.line);
 
     });
 
@@ -32,13 +36,14 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
         //console.log(element.delay != undefined );
         
         if (element.delay != undefined && element.delay > 0) {
-            vorwaerts.push(element.timeOffset + " + " + (element.delay/60))
+            vorwaerts.push(element.timeOffset + (element.delay/60) + " min | Richtung " + element.line.direction)
         } else {
-            vorwaerts.push(element.timeOffset)
+            vorwaerts.push(element.timeOffset + " min | Richtung " + element.line.direction)
         }
 
         //console.log(vorwaerts);
-
+        // console.log("line");
+        // console.log(element.line);
     });
 
     
@@ -73,7 +78,7 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
 
                             {vorwaerts.map((element, index) => (
                                 <Text 
-                                    key={index} style={styles.text}>{element + " min "} 
+                                    key={index} style={styles.text}>{element} 
                                 </Text>
                             ))}
 
@@ -91,7 +96,7 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
 
                             {rueckwaerts.map((element, index) => (
                                 <Text 
-                                    key={index}  style={styles.text}>{element + " min "}
+                                    key={index}  style={styles.text}>{element}
                                 </Text>
                             ))}
                         </Pressable>
@@ -140,16 +145,15 @@ const styles = StyleSheet.create({
         padding: Style.standartPadding,
         //justifyContent: "flex-start",
         //alignItems: "flex-start",
-        width: 200,
-        height: "100%"
-        
+        minWidth: 200,
+        //height: "100%"
     },
     rueckwaertsBox:{
         padding: Style.standartPadding,
         //justifyContent: "flex-start",
         //alignItems: "flex-start",
-        width: 200,
-        height: "100%",
+        minWidth: 200,
+        //height: "100%",
     }
 });
 

@@ -6,6 +6,10 @@ import { getData } from './data/AppStorage';
 import * as NavigationBar from 'expo-navigation-bar';
 import { Platform } from 'react-native';
 import { useFonts, Comfortaa_300Light, Comfortaa_400Regular, Comfortaa_500Medium, Comfortaa_600SemiBold, Comfortaa_700Bold } from '@expo-google-fonts/comfortaa';
+import { LogBox } from "react-native"
+import Toast from 'react-native-toast-message';
+
+LogBox.ignoreAllLogs(true)
 
 //set android 
 if (Platform.OS === "android") {
@@ -52,6 +56,8 @@ export default function App() {
   return (
     <myHvvContext.Provider value={[appData, setAppData]}>
       <MainNavigator/>
+      <Toast/>
     </myHvvContext.Provider>
+    
   );
 }

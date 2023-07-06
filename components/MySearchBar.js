@@ -28,10 +28,7 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
   //Wird ausgeführt, sobald der State stationsData geändert wird
   useEffect(() => {
 
-    console.log("useeffect stationsDataFromAPI");
     if (stationsDataFromAPI.results && search.length > 0) {
-      console.log("setready true");
-      console.log(stations);
       setReady(true);
       //erhaltende Daten von api als station object erstellen und in temp array speichern
       const stationsAsStationObjects = (stationsDataFromAPI.results).map((item, index) => new Station(item))
@@ -48,14 +45,14 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
 
     } else {
       setReady(false)
-      console.log("setready false");
+      
     }
   }, [stationsDataFromAPI])
 
   //Wird ausgeführt, wenn Searchbar upgedatet wird
   const updateSearch = async (search) => {
 
-    console.log("updatesearch");
+    
     //sucheingabe als state setzen
     setSearch(search);
 
@@ -76,10 +73,6 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
     setStationsDataFromAPI(await getCheckName(search))
   };
 
-  testClickHandler = () => {
-    console.log("test");
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -99,7 +92,6 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
       ) : (
         null
       )}
-      
 
     </View>
   )

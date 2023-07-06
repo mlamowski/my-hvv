@@ -9,6 +9,14 @@ export default LineDetailsListItem = ({ myLine, clickHandler }) => {
     //console.log("myline");
     //console.log(myLine)
 
+    //function to calc the time when something arrives from the delay is has
+    const getDapartureTime = ( minutesToAdd, secondsToAdd ) => {
+        now = new Date();
+        dateObject = new Date( now.getTime() + (minutesToAdd * 60000) + (secondsToAdd * 1000) );
+        const formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        return formattedTime;
+    }
+
 
     //calculated departure
     departure = "";
