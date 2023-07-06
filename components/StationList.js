@@ -18,16 +18,18 @@ export default StationList = ({ stationsData, clickHandler }) => {
             data={stationsData}
             renderItem={renderItem}
             keyExtractor={(item) => item.id  + (Math.floor(Math.random() * 1000) + 1)}
+            ListHeaderComponent={()=><View style={{height: Style.standartMargin}}></View>}
         />
     );
 };
 
 const styles = StyleSheet.create({
     list: {
-        //flex: 1,
-        padding: Style.standartMargin,
+        flex: 1,
+        //padding: Style.standartMargin,
+        paddingHorizontal: Style.standartMargin,
         width: "100%",
-        
+        height: "100%",
         maxWidth: 500,
     }
   });

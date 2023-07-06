@@ -6,8 +6,8 @@ import Style from '../constants/Style';
 export default DepartureList = ({ stationsData, clickHandler }) => {
 
     stationsData.forEach(element => {
-        console.log(element.name)
-        console.log(element.serviceId);
+        //console.log(element.name)
+        //console.log(element.serviceId);
     });
 
     const renderItem = ({ item }) => (

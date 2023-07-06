@@ -5,8 +5,46 @@ import Style from '../constants/Style';
 
 export default DepartureListItem = ({ myStation, clickHandler }) => {
 
-    const scrollViewRef = useRef(null);
-  
+    //console.log("mystation");
+    //console.log(myStation);
+
+
+    //make new array with calculated departure times 
+    vorwaerts = [];
+    rueckwaerts = [];
+
+    myStation.rueckwaerts.forEach(element => {
+        //console.log(element.delay);
+        //console.log(element.delay != undefined);
+        
+        if (element.delay != undefined && element.delay > 0) {
+            rueckwaerts.push(element.timeOffset + " + " + (element.delay/60))
+        } else {
+            rueckwaerts.push(element.timeOffset)
+        }
+
+        //console.log(rueckwaerts);
+
+    });
+
+    myStation.vorwaerts.forEach(element => {
+        //console.log(element.delay);
+        //console.log(element.delay != undefined );
+        
+        if (element.delay != undefined && element.delay > 0) {
+            vorwaerts.push(element.timeOffset + " + " + (element.delay/60))
+        } else {
+            vorwaerts.push(element.timeOffset)
+        }
+
+        //console.log(vorwaerts);
+
+    });
+
+    
+
+
+
     return (
         <View //einzelnes list item
             style={styles.container} 
@@ -20,23 +58,22 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
             
             <View style={styles.scrollview}>
                 <ScrollView
-                    ref={scrollViewRef}
                     horizontal
                     //pagingEnabled
                 >
 
-                    <View >
+                    <View>
                         <Pressable 
                             onPress={() => clickHandler(myStation, 1)}
                             style={styles.vorwaertsBox}
                         >
-                            <Text style={styles.text}>
+                            <Text style={[styles.text, styles.directionText]}>
                                     Vorwärts: 
                             </Text>
 
-                            {myStation.vorwaerts.map((element, index) => (
+                            {vorwaerts.map((element, index) => (
                                 <Text 
-                                    key={index} style={styles.text}>{element.timeOffset + " min "} 
+                                    key={index} style={styles.text}>{element + " min "} 
                                 </Text>
                             ))}
 
@@ -48,13 +85,13 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
                             onPress={() => clickHandler(myStation, 6)}
                             style={styles.rueckwaertsBox}
                         >
-                            <Text style={styles.text}>
+                            <Text style={[styles.text, styles.directionText]}>
                                 Rückwärts: 
                             </Text>
 
-                            {myStation.rueckwaerts.map((element, index) => (
+                            {rueckwaerts.map((element, index) => (
                                 <Text 
-                                    key={index}  style={styles.text}>{element.timeOffset + " min "} 
+                                    key={index}  style={styles.text}>{element + " min "}
                                 </Text>
                             ))}
                         </Pressable>
@@ -77,8 +114,12 @@ const styles = StyleSheet.create({
         
         
     },
+    directionText: {
+        fontFamily: Style.fontFamilyBold,
+    },
     text: {
         color: Colors.textLight,
+        
     },
     lineNameBox: {
         backgroundColor: Colors.accent,

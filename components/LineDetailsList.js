@@ -28,7 +28,7 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
                     style={styles.list}
                     data={lineData}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.serviceId + (Math.floor(Math.random() * 1000) + 1)}
+                    keyExtractor={(item) => item.serviceId + (Math.floor(Math.random() * 1000000000) + 1)}
                 />
 
             </View>

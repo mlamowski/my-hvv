@@ -8,6 +8,7 @@ import Colors from '../constants/Colors';
 import Style from '../constants/Style';
 
 
+
 export default HomeStationDepartures = ({ route, navigation }) => {
 
 
@@ -21,6 +22,9 @@ export default HomeStationDepartures = ({ route, navigation }) => {
     onScreenLoad();
   }, [])
 
+
+
+
   //wenn screen geladen, wird eine gefilterte liste der haltestellen an der gewählten sation mit der konkreten line id 
   const onScreenLoad = async() => {
     //const directionID = line.vorwaerts[0].directionId
@@ -30,9 +34,9 @@ export default HomeStationDepartures = ({ route, navigation }) => {
     //hier werden nur die lines verwendet, die die richtige directionid ( 1 - vorwaerts oder 6 - rueckwaerts) haben
     const filteredList = departures.filter((dep) => dep.directionId == directionID);
 
-    filteredList.forEach(element => {
-      console.log(element);
-    });
+    // filteredList.forEach(element => {
+    //   console.log(element);
+    // });
 
     //als state setzen
     setFilteredDepartures(filteredList)
