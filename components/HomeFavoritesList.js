@@ -17,7 +17,7 @@ export default HomeFavoritesList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler}/>
+      <StationList style={styles.list} stationsData={appData.favorites} clickHandler={clickHandler} longClickHandler={clickHandler}/>
     </View>
   )
 }

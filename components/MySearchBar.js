@@ -88,7 +88,7 @@ export default MySearchBar = ({ clickHandler, qrButtonClickHandler }) => {
       </View>
 
       {isReady ? (
-        <StationList stationsData={stations} clickHandler={clickHandler}/>
+        <StationList stationsData={stations} clickHandler={clickHandler} longClickHandler={clickHandler}/>
       ) : (
         null
       )}

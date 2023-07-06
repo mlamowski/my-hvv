@@ -50,7 +50,7 @@ export default FavoritesList = ({ navigation }) => {
 
       <PageTitle smallTitle={"Deine"} bigTitle={"Favoriten"}/>
 
-      <StationList stationsData={appData.favorites} clickHandler={clickHandler}/>
+      <StationList stationsData={appData.favorites} clickHandler={clickHandler} longClickHandler={clickHandler}/>
       <View style={styles.addButton}>
         <AddButton clickHandler={addButtonHandler} text={"+"}/>
       </View>
