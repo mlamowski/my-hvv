@@ -84,7 +84,6 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
 
 const styles = StyleSheet.create({
   container: {
-    
     height: "100%",
     width: "100%",
     justifyContent: "center",
