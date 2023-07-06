@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {StyleSheet, View, Text, Pressable, Modal, Button } from 'react-native';
+import {StyleSheet, View, Text, Pressable, Modal, Dimensions } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { getOneCheckName } from '../api/checkName';
 import AddButton from './AddButton';
@@ -16,6 +16,9 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
 
   useEffect(() => {
     getBarCodeScannerPermissions();
+    console.log(Dimensions.get('screen').width)
+    console.log(Dimensions.get('screen').height)
+
   });
 
   //Permission setzen
@@ -60,10 +63,12 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
         {hasPermission === true &&
 
           <View style={styles.container}>
-            <View style={styles.scanner}>
+            <View style={{position: 'absolute', ...styles.flexCenter}}>
               <BarCodeScanner
                   onBarCodeScanned={handleBarCodeScanned}
-                  style={StyleSheet.absoluteFillObject}
+                  style={
+                    styles.camDisplay
+                }
               >
                 <View style={styles.button}>
 
@@ -96,9 +101,23 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   button:{
-    marginTop: 20,
-    marginRight: 7,
-    alignSelf: "flex-end",
-  }
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 300,  
+  },
+  flexCenter: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+camDisplay: {
+
+    zIndex: 1,
+    width: Dimensions.get('screen').width*1.8,
+    height: Dimensions.get('screen').height*1.1,
+},
 })
 

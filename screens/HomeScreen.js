@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Text, View, Button, StyleSheet, useWindowDimensions } from 'react-native';
 import ContextManager from '../data/contextManager';
 import { storeData } from '../data/AppStorage';
 import ButtonQRCodeScanner from '../components/ButtonQRCodeScanner';
@@ -13,6 +13,8 @@ import MySearchBar from '../components/MySearchBar';
 export default HomeScreen = ({ navigation }) => {
 
   const [QRScannerIsVisible, setQRCodeScannerVisible] = useState(false);
+  const [TopTabNavIsVisible, setTopTabNavVisible] = useState(true);
+
 
   //get context manager to add recents 
   const myContextManager = new ContextManager();
@@ -24,13 +26,26 @@ export default HomeScreen = ({ navigation }) => {
   }, [appData])
   
   const clickHandler = (stationObject) => {
-    console.log("station object");
-    console.log(stationObject);
+    //console.log("station object");
+    //console.log(stationObject);
     navigation.navigate("LineDetails", { stationObject: stationObject })
     //add station the recents 
     myContextManager.addRecent(stationObject)
     
   };
+
+  const windowHeight = useWindowDimensions().height;
+
+  const hideTopTabNavigator = () => {
+    setTopTabNavVisible(false)
+    console.log("TopTabNavIsVisible ist " + TopTabNavIsVisible)
+  }
+
+  const showTopTabNavigator = () => {
+    setTopTabNavVisible(true)
+    console.log("TopTabNavIsVisible ist " + TopTabNavIsVisible)
+
+  }
 
   const openQRCodeScannerClickHandler = () => {
     setQRCodeScannerVisible(true)
@@ -41,23 +56,27 @@ export default HomeScreen = ({ navigation }) => {
   } 	
 
   return (
-    <Fragment>
-      
-      <View style={styles.header}>
-        <View style={styles.topBar}>
-          <View style={styles.searchBar}>
-            <MySearchBar navigation={navigation} clickHandler={clickHandler} qrButtonClickHandler={openQRCodeScannerClickHandler}/>
+    <Fragment >
+      <View style={[{ minHeight: Math.round(windowHeight), backgroundColor: "white" }]}>
+        <View style={styles.header}>
+          <View style={styles.topBar}>
+            <View style={styles.searchBar}>
+              <MySearchBar navigation={navigation} clickHandler={clickHandler} hideTopTabNavigator={hideTopTabNavigator} showTopTabNavigator={showTopTabNavigator} qrButtonClickHandler={openQRCodeScannerClickHandler}/>
+            </View>
+            {/* <View>
+              <ButtonQRCodeScanner clickHandler={openQRCodeScannerClickHandler}/>
+            </View> */}
           </View>
-          {/* <View>
-            <ButtonQRCodeScanner clickHandler={openQRCodeScannerClickHandler}/>
-          </View> */}
         </View>
-      </View>
 
+        
+        <MyQRCodeScanner visible={QRScannerIsVisible} clickHandlerCloseModal={closeQRCodeScannerClickHandler} clickHandlerToNav={clickHandler}/>
+        { TopTabNavIsVisible && 
+          <HomeTopTabNavigator/>
+      }
+      </View>
       
-      <MyQRCodeScanner visible={QRScannerIsVisible} clickHandlerCloseModal={closeQRCodeScannerClickHandler} clickHandlerToNav={clickHandler}/>
-      
-      <HomeTopTabNavigator/>
+
 
     </Fragment>
   )
