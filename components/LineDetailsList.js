@@ -9,13 +9,6 @@ export default LineDetailsList = ({ lineName, lineData, clickHandler }) => {
     //sort departures by time
     lineData.sort((a, b) => (a.timeOffset + (a.delay / 60)) - (b.timeOffset + (a.delay / 60)));
 
-    // console.log("linedata");
-    // console.log(lineData);
-    lineData.forEach(element => {
-        // console.log("service id ist: " + element.serviceId) 
-        //onsole.log(element);
-    });
-
     const renderItem = ({ item }) => (
         <LineDetailsListItem
             myLine={item}

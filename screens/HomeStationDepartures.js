@@ -34,13 +34,8 @@ export default HomeStationDepartures = ({ route, navigation }) => {
     //hier werden nur die lines verwendet, die die richtige directionid ( 1 - vorwaerts oder 6 - rueckwaerts) haben
     const filteredList = departures.filter((dep) => dep.directionId == directionID);
 
-    // filteredList.forEach(element => {
-    //   console.log(element);
-    // });
-
     //als state setzen
     setFilteredDepartures(filteredList)
-    //console.log("setDepartures");
 
   }
 
@@ -48,8 +43,6 @@ export default HomeStationDepartures = ({ route, navigation }) => {
   useEffect(() => {
     if (filteredDepartures) {  
       setReady(true);
-      // console.log("useeffect");
-      //console.log(filteredDepartures);
     }
   }, [filteredDepartures]);
 

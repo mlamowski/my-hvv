@@ -28,7 +28,7 @@ class ContextManager {
         //check if station is allready in the fav list
         if (this.appData.favorites.some(obj => obj.id === newFavStation.id)) { //uses .some method to check if there is already a station with that id 
             //station allready in the list
-            //console.log("station allready in list");
+            
         } else {
             //add fav
             let newFavorites = appData.favorites;
@@ -56,12 +56,6 @@ class ContextManager {
             recents: newRecents,
         }));
 
-        newRecents.forEach(element => {
-            //console.log(element.station);
-        });
-
-        //console.log(storeData(this.appData));
-
     }
 
     
@@ -74,8 +68,6 @@ class ContextManager {
             recents: appData.recents,
         }));
 
-
-        //console.log(storeData(appData));
     }
 
     deleteRecent = (stationToRemove) => {
@@ -93,7 +85,6 @@ class ContextManager {
             recents: [],
         }));
 
-        //console.log(storeData(appData));
     }
 }
   

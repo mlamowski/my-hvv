@@ -5,10 +5,6 @@ import Style from '../constants/Style';
 
 export default LineDetailsListItem = ({ myLine, clickHandler }) => {
 
-    //console.log("station item mystation: ", myStation);
-    //console.log("myline");
-    //console.log(myLine)
-
     //function to calc the time when something arrives from the delay is has
     const getDapartureTime = ( minutesToAdd, secondsToAdd ) => {
         now = new Date();

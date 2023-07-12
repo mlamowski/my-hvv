@@ -5,9 +5,6 @@ import Style from '../constants/Style';
 
 export default DepartureListItem = ({ myStation, clickHandler }) => {
 
-    // console.log("mystation");
-    // console.log(myStation);
-
     //sort arrays by wann die kommen
     myStation.rueckwaerts.sort((a, b) => (a.timeOffset + (a.delay / 60)) - (b.timeOffset + (a.delay / 60)));
     myStation.vorwaerts.sort((a, b) => (a.timeOffset + (a.delay / 60)) - (b.timeOffset + (a.delay / 60)));
@@ -18,9 +15,6 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
     rueckwaerts = [];
 
     myStation.rueckwaerts.forEach(element => {
-        //console.log(element.delay);
-        //console.log(element.delay != undefined);
-
         
         if (element.delay != undefined && element.delay > 0) {
             rueckwaerts.push(element.timeOffset + (element.delay/60) + " min | Bis " + element.line.direction)
@@ -28,15 +22,9 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
             rueckwaerts.push(element.timeOffset + " min | Bis " + element.line.direction)
         }
 
-        //console.log(rueckwaerts);
-        // console.log("line");
-        // console.log(element.line);
-
     });
 
     myStation.vorwaerts.forEach(element => {
-        //console.log(element.delay);
-        //console.log(element.delay != undefined );
         
         if (element.delay != undefined && element.delay > 0) {
             vorwaerts.push(element.timeOffset + (element.delay/60) + " min | Bis " + element.line.direction)
@@ -44,9 +32,6 @@ export default DepartureListItem = ({ myStation, clickHandler }) => {
             vorwaerts.push(element.timeOffset + " min | Bis " + element.line.direction)
         }
 
-        //console.log(vorwaerts);
-        // console.log("line");
-        // console.log(element.line);
     });
 
 

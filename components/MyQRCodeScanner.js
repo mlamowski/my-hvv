@@ -16,9 +16,6 @@ export default MyQRCodeScanner = ({visible, clickHandlerCloseModal, clickHandler
 
   useEffect(() => {
     getBarCodeScannerPermissions();
-    console.log(Dimensions.get('screen').width)
-    console.log(Dimensions.get('screen').height)
-
   });
 
   //Permission setzen

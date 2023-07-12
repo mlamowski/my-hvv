@@ -31,7 +31,6 @@ export default FavoritesAdd = ({ navigation }) => {
   //onlickhandler for clicking on a searched station - gets a station object 
   const clickHandler = (stationObject) => {
     //add station to favs 
-    //console.log("add station");
     showToast(stationObject.station);
     myContextManager.addFavorite(stationObject);
 

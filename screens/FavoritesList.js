@@ -27,12 +27,11 @@ export default FavoritesList = ({ navigation }) => {
     Alert.alert('Deletion', 'Delete: ' + stationObject.station + "?", [
       {
         text: 'Cancel',
-        //onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
       {
         text: 'Delete', 
-        onPress: () => [/*console.log('Delete Pressed'), */myContextManager.deleteFavorite(stationObject)]}, //delete fav
+        onPress: () => [myContextManager.deleteFavorite(stationObject)]}, //delete fav
   ]);
 
   //clickHandler für wenn auf eine Station in der Favlist geglickt wird

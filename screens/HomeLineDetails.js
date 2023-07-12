@@ -16,9 +16,6 @@ export default HomeLineDetails = ({ route, navigation }) => {
   //Empfange Params von Seite davor
   const {stationObject} = route.params;
 
-  //console.log("Stationobject inside homelinedetail");
-  //console.log(stationObject);
-
   //States
   const [isReady, setReady] = useState(false);
   const [departures, setDepartures] = useState([]);
@@ -51,8 +48,7 @@ export default HomeLineDetails = ({ route, navigation }) => {
     departures.departures.forEach((dep) => {
       const lineName = dep.line.name; 
       const lineID = dep.line.id; 
-      // console.log("dep:");
-      // console.log(dep);
+      
       //Abfrage, ob sich der lineName bereits in der tempListe befindet
       if(filteredDepsTempArray.some(obj => obj.name == lineName)) {
         //Wenn ja: departure zur passenden linie zuordnen, dabei wird zwischen vorwaerts und rueckwärts unterschieden

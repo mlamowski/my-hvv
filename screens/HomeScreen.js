@@ -26,8 +26,7 @@ export default HomeScreen = ({ navigation }) => {
   }, [appData])
   
   const clickHandler = (stationObject) => {
-    //console.log("station object");
-    //console.log(stationObject);
+    
     navigation.navigate("LineDetails", { stationObject: stationObject })
     //add station the recents 
     myContextManager.addRecent(stationObject)
@@ -38,12 +37,11 @@ export default HomeScreen = ({ navigation }) => {
 
   const hideTopTabNavigator = () => {
     setTopTabNavVisible(false)
-    console.log("TopTabNavIsVisible ist " + TopTabNavIsVisible)
+    
   }
 
   const showTopTabNavigator = () => {
     setTopTabNavVisible(true)
-    console.log("TopTabNavIsVisible ist " + TopTabNavIsVisible)
 
   }
 
